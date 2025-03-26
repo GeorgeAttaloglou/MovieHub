@@ -1,5 +1,5 @@
 import React from "react";
-import "./Profile.css";
+import "./Profile2.css";
 import { Link } from "react-router-dom";
 
 function Profile() {
@@ -19,15 +19,15 @@ function Profile() {
 
       <div className="profile-bottom-section">
         <div className="tabs-wrapper">
-          <Link to="/profile" className="tab-button active">My diary</Link>
-          <Link to="/profile2" className="tab-button">My lists</Link>
+          <Link to="/profile" className="tab-button">My diary</Link>
+          <Link to="/profile2" className="tab-button active">My lists</Link>
           <Link to="/profile3" className="tab-button">My stats</Link>
         </div>
         <div className="profile-content">
           <div className="diary-entry">
-            <h2>Diary Entry</h2>
+            <h2>Lists</h2>
             <p>
-              You watched "The Shawshank Redemption" on 26/3/2025 and rated it 5 stars.
+              This is where the lists will be displayed.
             </p>
           </div>
         </div>

@@ -1,3 +1,23 @@
+/* Ensure navbar is always visible */
+.navbar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1050 !important;
+  background-color: rgba(0, 0, 0, 0.9) !important; /* Dark background */
+}
+
+/* Make sure navbar items are visible */
+.navbar-nav .nav-link {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Ensure the navbar brand is visible */
+.navbar-brand {
+  font-size: 44px;
+  font-weight: bold;
+}
+
 .App {
   text-align: center;
 }

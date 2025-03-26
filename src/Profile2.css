@@ -1,0 +1,52 @@
+.profile-container {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    padding: 20px;
+    width: calc(100% - 20px); /* Full width minus 10px margin on both sides */
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+  }
+  
+  .profile-image {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+    flex-shrink: 0;
+  }
+  
+  .profile-text {
+    flex: 2;
+  }
+  
+
+  .tabs-wrapper {
+    display: flex;
+    padding: 0 10px;
+    margin-top: 20px;
+  }
+  
+  .tab-button {
+    padding: 16px 24px;
+    color: white;
+    background-color: black;
+    border: none;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 4px;
+  }
+  
+  .tab-button.active {
+    background-color: gray;
+  }
+
+  .profile-bottom-section {
+    padding: 0 10px 20px 10px;
+  }
+
+  
