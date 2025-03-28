@@ -1,10 +1,15 @@
 import React from "react";
+import "./Log.css";
 
 function Log() {
   return (
-    <div className="container text-center mt-5">
+    <div className="log-container">
       <h1>Log</h1>
-      <p>This is the Log page of our React application.</p>
+
+      <div className="log-search">
+      <input type="text" name="name" />
+      <input type="submit" value="Search" />
+      </div>
     </div>
   );
 }
