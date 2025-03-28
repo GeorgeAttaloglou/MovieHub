@@ -13,13 +13,13 @@
     width: 140px;
     height: 140px;
     border-radius: 50%;
-    object-fit: cover;
+
     margin-right: 20px;
-    flex-shrink: 0;
   }
   
   .profile-text {
     flex: 2;
+    color: #a855f7; /* Purple */
   }
   
 
@@ -32,12 +32,10 @@
   .tab-button {
     padding: 16px 24px;
     color: white;
-    background-color: black;
-    border: none;
+    background-color: black; 
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     font-weight: bold;
-    cursor: pointer;
     margin-right: 4px;
     text-decoration: none; /* <- This removes the underline */
   }
@@ -50,4 +48,17 @@
     padding: 0 10px 20px 10px;
   }
 
-  
+  .profile-content {
+    background-color: gray;
+    padding: 20px 10px;
+    margin: 0 10px;
+    border-radius: 0 0 12px 12px;
+  }
+
+
+.diary-entry {
+  background-color: #363636;
+  padding: 16px;
+  border-radius: 12px;
+  color: #bf8fdf;
+}

@@ -20,8 +20,8 @@ function Profile() {
       <div className="profile-bottom-section">
         <div className="tabs-wrapper">
           <Link to="/profile" className="tab-button active">My diary</Link>
-          <Link to="/profile2" className="tab-button">My lists</Link>
-          <Link to="/profile3" className="tab-button">My stats</Link>
+          <Link to="/profilelists" className="tab-button">My lists</Link>
+          <Link to="/profilestats" className="tab-button">My stats</Link>
         </div>
         <div className="profile-content">
           <div className="diary-entry">
