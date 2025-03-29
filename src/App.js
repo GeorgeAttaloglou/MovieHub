@@ -9,6 +9,8 @@ import CreateList from "./CreateList"; // Import CreateList page
 import BrowseMovies from "./BrowseMovies"; // Import About page
 import "./App.css";
 import Profile from "./Profile";
+import ProfileLists from "./ProfileLists";
+import ProfileStats from "./ProfileStats";
 import Log from "./Log";
 import Footer from "./Footer"; // Import Footer component
 
@@ -23,6 +25,8 @@ function App() {
         <Route path="/browse-movies" element={<BrowseMovies/>} />
         <Route path="/profile" element={<Profile/>} />
         <Route path="/log" element={<Log/>} />
+        <Route path="/profilelists" element={<ProfileLists/>} />
+        <Route path="/profilestats" element={<ProfileStats/>} />  
       </Routes>
       <Footer />
     </>

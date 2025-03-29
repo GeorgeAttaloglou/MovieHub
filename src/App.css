@@ -1,3 +1,29 @@
+/* Ensure navbar is always visible */
+.navbar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1050 !important;
+  background-color: rgba(0, 0, 0, 0.9) !important; /* Dark background */
+}
+
+/* Make sure navbar items are visible */
+.navbar-nav .nav-link {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Ensure the navbar brand is visible */
+.navbar-brand {
+  font-size: 44px;
+  font-weight: bold;
+  color: #a855f7; /* Purple */
+  transition: color 0.3s ease;
+  }
+
+  .navbar-brand:hover {
+    color: #ff7eb3; 
+}
+
 .App {
   text-align: center;
 }
@@ -7,11 +33,6 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #282c34;
