@@ -23,16 +23,16 @@ const Footer = () => {
 			<FooterContainer>
 				<Row>
 					<Column>
-						<Heading><FooterLink href="/About">About</FooterLink></Heading>
+						<Heading><FooterLink href="/about">About</FooterLink></Heading>
 					</Column>
 					<Column>
-						<Heading><FooterLink href="/CreateList">Make a list!</FooterLink></Heading>
+						<Heading><FooterLink href="/create-list">Make a list!</FooterLink></Heading>
 					</Column>
 					<Column>
-						<Heading><FooterLink href="/BrowseMovies">Browse</FooterLink></Heading>
+						<Heading><FooterLink href="/browse-movies">Browse</FooterLink></Heading>
 					</Column>
 					<Column>
-						<Heading><FooterLink href="/Profile">Profile</FooterLink></Heading>
+						<Heading><FooterLink href="/profile">Profile</FooterLink></Heading>
 					</Column>
 				</Row>
 			</FooterContainer>
