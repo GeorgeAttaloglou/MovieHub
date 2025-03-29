@@ -1,4 +1,4 @@
-/* Global Styling */
+/* Reset and base styles for body and html */
 body, html {
   margin: 0;
   padding: 0;
@@ -7,26 +7,25 @@ body, html {
   color: aliceblue;
 }
 
-/* About Container */
+/* Styling for the main container */
 .about-container {
   max-width: 1200px;
   margin: 50px auto;
   padding: 50px 20px;
 }
 
+/* Centered text block with background and shadow */
 .about-us-text-center {
-  display: flexbox;
   text-align: center;
-  justify-content: space-between;
   gap: 30px;
   margin-bottom: 50px;
   padding: 30px;
   border-radius: 12px;
-  background: rgba(0, 0, 0, 0.8); /* Dark overlay for readability */
+  background: rgba(0, 0, 0, 0.8);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* About Section (Alternating Layout) */
+/* Flexbox layout for sections with image and text */
 .about-section {
   display: flex;
   align-items: center;
@@ -35,15 +34,11 @@ body, html {
   margin-bottom: 50px;
   padding: 30px;
   border-radius: 12px;
-  background: rgba(0, 0, 0, 0.8); /* Dark overlay for readability */
+  background: rgba(0, 0, 0, 0.8);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.about-section.reverse {
-  flex-direction: row;
-}
-
-/* Image Styling */
+/* Styling for images in the about section */
 .about-image {
   width: 45%;
   height: auto;
@@ -52,33 +47,45 @@ body, html {
   border-radius: 10px;
 }
 
-/* Text Container */
+/* Container for text in the about section */
 .about-text-container {
   width: 50%;
 }
 
-/* Title Styling */
-.about-title {
+/* Styling for links in the about title */
+.about-title a {
+  text-decoration: none;
   font-size: 2.5rem;
-  color: #a855f7; /* Purple */
-  margin-bottom: 15px;
+  color: #a855f7;
+  transition: color 0.3s ease, transform 0.2s ease;
 }
 
-/* Paragraph Styling */
+.about-title a:hover {
+  color: #c084fc;
+  transform: scale(1.05);
+}
+
+.about-title a:active {
+  color: #9333ea;
+}
+
+/* Title styling */
+.about-title {
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+/* Text content styling */
 .about-text {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   line-height: 1.6;
 }
 
-/* Responsive Design */
+/* Responsive adjustments for smaller screens */
 @media (max-width: 900px) {
   .about-section {
       flex-direction: column;
       text-align: center;
-  }
-
-  .about-section.reverse {
-      flex-direction: column;
   }
 
   .about-image {
