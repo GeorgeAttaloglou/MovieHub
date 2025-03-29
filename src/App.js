@@ -12,6 +12,7 @@ import Profile from "./Profile";
 import ProfileLists from "./ProfileLists";
 import ProfileStats from "./ProfileStats";
 import Log from "./Log";
+import Footer from "./Footer"; // Import Footer component
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/profilelists" element={<ProfileLists/>} />
         <Route path="/profilestats" element={<ProfileStats/>} />  
       </Routes>
+      <Footer />
     </>
   );
 }
