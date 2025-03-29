@@ -10,6 +10,7 @@ import BrowseMovies from "./BrowseMovies"; // Import About page
 import "./App.css";
 import Profile from "./Profile";
 import Log from "./Log";
+import Footer from "./Footer"; // Import Footer component
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/profile" element={<Profile/>} />
         <Route path="/log" element={<Log/>} />
       </Routes>
+      <Footer />
     </>
   );
 }
