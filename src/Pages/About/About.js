@@ -16,7 +16,7 @@ function About() {
 
       {/* Section 1 - Image Left, Text Right */}
       <div className="about-section">
-        <img src="movie-watching.jpg" alt="Movie Experience" className="about-image" />
+        <img src="pictures/movie-watching.jpg" alt="Movie Experience" className="about-image" />
         <div className="about-text-container">
           <h2 className="about-title">
             <Link to="/browse-movies">Discover New Movies</Link>
@@ -37,7 +37,7 @@ function About() {
             Keep track of your favorite movies, mark what you've watched, and rate your favorites.
           </p>
         </div>
-        <img src="movie-tracking.jpg" alt="Tracking Movies" className="about-image" />
+        <img src="pictures/movie-tracking.jpg" alt="Tracking Movies" className="about-image" />
       </div>
     </div>
   );

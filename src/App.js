@@ -1,18 +1,18 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom"; // Import Routes and Route
-import LandingPage from "./LandingPage";
-import Header from "./Header"; // Navbar
+import LandingPage from "./Pages/LandingPage/LandingPage";
+import Header from "./Components/Header/Header"; // Navbar
 import "bootstrap/dist/css/bootstrap.min.css"; // Bootstrap CSS
 import "bootstrap/dist/js/bootstrap.bundle.min"; // Bootstrap JS
-import About from "./About"; // Import About page
-import CreateList from "./CreateList"; // Import CreateList page
-import BrowseMovies from "./BrowseMovies"; // Import About page
+import About from "./Pages/About/About"; // Import About page
+import CreateList from "./Pages/CreateList/CreateList"; // Import CreateList page
+import BrowseMovies from "./Pages/BrowseMovies/BrowseMovies"; // Import About page
 import "./App.css";
-import Profile from "./Profile";
-import ProfileLists from "./ProfileLists";
-import ProfileStats from "./ProfileStats";
-import Log from "./Log";
-import Footer from "./Footer"; // Import Footer component
+import Profile from "./Pages/Profile/Profile";
+import ProfileLists from "./Pages/Profile/ProfilePages/ProfileLists";
+import ProfileStats from "./Pages/Profile/ProfilePages/ProfileStats";
+import Log from "./Pages/Log/Log";
+import Footer from "./Components/Footer/Footer"; // Corrected Footer component path
 
 function App() {
   return (

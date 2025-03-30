@@ -1,5 +1,5 @@
 import React from "react";
-import PopularMovies from "./PopularMovies";
+import PopularMovies from "../../Components/PopularMovies/PopularMovies";
 import "./Log.css";
 
 const mockMovies = [
