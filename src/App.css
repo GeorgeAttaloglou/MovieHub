@@ -16,12 +16,12 @@
 .navbar-brand {
   font-size: 44px;
   font-weight: bold;
-  color: #a855f7; /* Purple */
+  color: #a855f7 !important; /* Purple color */
   transition: color 0.3s ease;
   }
 
   .navbar-brand:hover {
-    color: #ff7eb3; 
+    color: #ff7eb3 !important; /* Pink color on hover */
 }
 
 .App {
