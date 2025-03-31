@@ -13,12 +13,13 @@ const Footer = () => {
 		<Box>
 			<h1
 				style={{
+					fontSize: "30px",
 					color: "purple",
 					textAlign: "center",
-					marginTop: "10px",
+					marginTop: "4px",
 				}}
 			>
-				A place to track your movie history!
+				Explore MovieHub!
 			</h1>
 			<FooterContainer>
 				<Row>
@@ -38,9 +39,10 @@ const Footer = () => {
 			</FooterContainer>
 			<h3
 				style={{
+					fontSize: "16px",
 					color: "purple",
 					textAlign: "center",
-					marginTop: "10px",
+					marginTop: "5px",
 				}}
 			>
 				Copyright 2025©. All rights reserved.
