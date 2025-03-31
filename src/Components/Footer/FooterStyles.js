@@ -1,9 +1,7 @@
-// components/FooterStyles.js
-
 import styled from "styled-components";
 
 export const Box = styled.div`
-    padding: 3.5% 2.5%;
+    padding: 1% 1%;
     background: black;
     bottom: 0;
     width: 100%;
@@ -24,17 +22,16 @@ export const FooterContainer = styled.div`
 export const Column = styled.div`
     display: flex;
     flex-direction: column;
-    text-align: left;
-    margin-left: 60px;
+    text-align: center;
 `;
 
 export const Row = styled.div`
     display: grid;
     grid-template-columns: repeat(
         auto-fill,
-        minmax(185px, 1fr)
+        minmax(190px, 1fr)
     );
-    grid-gap: 20px;
+    grid-gap: 13px;
 
     @media (max-width: 1000px) {
         grid-template-columns: repeat(
@@ -46,7 +43,7 @@ export const Row = styled.div`
 
 export const FooterLink = styled.a`
     color: #fff;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 24;
     text-decoration: none;
 
@@ -57,8 +54,8 @@ export const FooterLink = styled.a`
 `;
 
 export const Heading = styled.p`
-    font-size: 24px;
+    font-size: 20px;
     color: #fff;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     font-weight: bold;
 `;
