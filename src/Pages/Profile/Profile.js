@@ -7,7 +7,7 @@ function Profile() {
     <div>
       <div className="profile-container">
         <img
-          src="/profileicon.png"
+          src="pictures/profileicon.png"
           alt="User"
           className="profile-image"
         />

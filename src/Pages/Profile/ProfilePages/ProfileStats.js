@@ -7,7 +7,7 @@ function ProfileStats() {
     <div>
       <div className="profile-container-stats">
         <img
-          src="/profileicon.png"
+          src="pictures/profileicon.png"
           alt="User"
           className="profile-image-stats"
         />
