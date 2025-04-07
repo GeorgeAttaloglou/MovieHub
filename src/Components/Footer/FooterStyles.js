@@ -29,9 +29,9 @@ export const Row = styled.div`
     display: grid;
     grid-template-columns: repeat(
         auto-fill,
-        minmax(190px, 1fr)
+        minmax(200px, 1fr)
     );
-    grid-gap: 13px;
+    grid-gap: 1px;
 
     @media (max-width: 1000px) {
         grid-template-columns: repeat(
@@ -48,14 +48,14 @@ export const FooterLink = styled.a`
     text-decoration: none;
 
     &:hover {
-        color: Purple;
+        color: #a855f7;
         transition: 200ms ease-in;
     }
 `;
 
 export const Heading = styled.p`
     font-size: 20px;
-    color: #fff;
+    color: #a855f7;
     margin-bottom: 10px;
     font-weight: bold;
 `;

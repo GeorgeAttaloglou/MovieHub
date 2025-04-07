@@ -14,7 +14,7 @@ const Footer = () => {
 			<h1
 				style={{
 					fontSize: "30px",
-					color: "purple",
+					color: "#a855f7",
 					textAlign: "center",
 					marginTop: "4px",
 				}}
@@ -22,25 +22,31 @@ const Footer = () => {
 				Explore MovieHub!
 			</h1>
 			<FooterContainer>
-				<Row>
-					<Column>
-						<Heading><FooterLink href="/about">About</FooterLink></Heading>
-					</Column>
-					<Column>
-						<Heading><FooterLink href="/create-list">Make a list!</FooterLink></Heading>
-					</Column>
-					<Column>
-						<Heading><FooterLink href="/browse-movies">Browse</FooterLink></Heading>
-					</Column>
-					<Column>
-						<Heading><FooterLink href="/profile">Profile</FooterLink></Heading>
-					</Column>
-				</Row>
+				<div style={
+					{
+						alignItems: "center"
+					}
+				}>
+					<Row>
+						<Column>
+							<Heading><FooterLink href="/profile">Profile</FooterLink></Heading>
+						</Column>
+						<Column>
+							<Heading><FooterLink href="/create-list">Make a list!</FooterLink></Heading>
+						</Column>
+						<Column>
+							<Heading><FooterLink href="/browse-movies">Browse</FooterLink></Heading>
+						</Column>
+						<Column>
+							<Heading><FooterLink href="/about">About</FooterLink></Heading>
+						</Column>
+					</Row>
+				</div>
 			</FooterContainer>
 			<h3
 				style={{
 					fontSize: "16px",
-					color: "purple",
+					color: "#bf8fdf",
 					textAlign: "center",
 					marginTop: "5px",
 				}}
