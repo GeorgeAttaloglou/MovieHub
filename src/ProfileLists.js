@@ -7,7 +7,7 @@ function ProfileLists() {
     <div>
       <div className="profile-container-lists">
         <img
-          src="pictures/profileicon.png"
+          src="/profileicon.png"
           alt="User"
           className="profile-image-lists"
         />
@@ -23,6 +23,7 @@ function ProfileLists() {
           <Link to="/profilelists" className="tab-button-lists active">My lists</Link>
           <Link to="/profilestats" className="tab-button-lists">My stats</Link>
         </div>
+        
         <div className="profile-content-lists">
           <div className="diary-entry-lists">
             <h2>Lists</h2>

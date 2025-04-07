@@ -7,7 +7,7 @@ function ProfileStats() {
     <div>
       <div className="profile-container-stats">
         <img
-          src="pictures/profileicon.png"
+          src="/profileicon.png"
           alt="User"
           className="profile-image-stats"
         />
@@ -23,6 +23,7 @@ function ProfileStats() {
             <Link to="/profilelists" className="tab-button-stats">My lists</Link>
             <Link to="/profilestats" className="tab-button-stats active">My stats</Link>
         </div>
+        
         <div className="profile-content-stats">
           <div className="diary-entry-stats">
             <h2>My Stats</h2>
