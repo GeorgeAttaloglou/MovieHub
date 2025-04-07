@@ -7,7 +7,7 @@ function ProfileLists() {
     <div>
       <div className="profile-container-lists">
         <img
-          src="/profileicon.png"
+          src="pictures/profileicon.png"
           alt="User"
           className="profile-image-lists"
         />
