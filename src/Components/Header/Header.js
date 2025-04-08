@@ -64,7 +64,7 @@ const Header = () => {
             {/* Icons & Buttons on the Right */}
             <div className="navbar-icons ms-auto">
               <Link to="/profile">
-              <img src="/profileicon.png" alt="User" className="user-icon" />
+              <img src="pictures/profileicon.png" alt="User" className="user-icon" />
               </Link>
               
               <Link to="/log">

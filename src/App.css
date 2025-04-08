@@ -1,11 +1,3 @@
-/* Ensure navbar is always visible */
-.navbar {
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 1050 !important;
-  background-color: rgba(0, 0, 0, 0.9) !important; /* Dark background */
-}
-
 /* Make sure navbar items are visible */
 .navbar-nav .nav-link {
   font-size: 18px;
@@ -56,4 +48,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+body {
+  padding-top: 70px; /* adjust to match actual navbar height */
 }
