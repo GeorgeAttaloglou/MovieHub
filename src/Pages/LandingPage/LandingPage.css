@@ -16,7 +16,7 @@ body, html {
     align-items: center;
     justify-content: center;
     text-align: center;
-    overflow: hidden;
+    overflow: auto;
   }
   
   .landing-background {

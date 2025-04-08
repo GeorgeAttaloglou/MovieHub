@@ -5,10 +5,7 @@ import PopularMovies from "../../Components/PopularMovies/PopularMovies";
 const LandingPage = () => {
   return (
     <div className="landing-container">
-      {/* Background Image */}
       <div className="landing-background"></div>
-
-      {/* Content */}
       <div className="landing-content">
         <h1 className="landing-title">Welcome to MovieHub</h1>
         <p className="landing-text">

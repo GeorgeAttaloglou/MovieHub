@@ -1,10 +1,13 @@
 import React from "react";
+import PopularMovies from "../../Components/PopularMovies/PopularMovies";
+
 
 function BrowseMovies() {
   return (
     <div className="container text-center mt-5">
-      <h1>Browse Movies</h1>
-      <p>This is the Browse Movies page of our React application.</p>
+      <div className="popular-movies-section">
+        <PopularMovies title="Trending Now" />
+      </div>
     </div>
   );
 }

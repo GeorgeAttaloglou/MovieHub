@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./PopularMovies.css";
 
-const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY; // replace with .env variable in production
+const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w500";
 
 function PopularMovies({ title }) {
