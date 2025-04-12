@@ -17,7 +17,14 @@
 
 /* General Navbar Styling */
 .custom-navbar {
-  padding: 10px;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1050;
+  background-color: #212529; /* matches Bootstrap dark */
+  width: 100%;
+  padding: 10px 0;
 }
 
 /* Keep user icon and LOG button in place */
@@ -47,4 +54,9 @@
     align-items: center;
     gap: 10px;
   }
+}
+
+/* global or page-level CSS */
+body, .main-content {
+  padding-top: 70px; /* or whatever height your navbar is */
 }

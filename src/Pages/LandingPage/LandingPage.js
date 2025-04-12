@@ -14,8 +14,8 @@ const LandingPage = () => {
         <button className="landing-button">Get Started</button>
       </div>
 
-      {/* Popular Movies Carousel */}
-      <div className="popular-movies-section">
+      {/* Popular Movies Section */}
+      <div className="popular-movies-wrapper">
         <PopularMovies title="Trending Now" />
       </div>
     </div>

@@ -1,38 +1,56 @@
-import React, { useState } from "react";
+// src/pages/CreateList/CreateList.js
+
+import React, { useState, useEffect } from "react";
 import "./CreateList.css";
 
-const mockMovies = [
-  { title: "Inception", image: "/movies/inception.png" },
-  { title: "Interstellar", image: "/movies/interstellar.png" },
-  { title: "The Matrix", image: "/movies/matrix.png" },
-  { title: "Parasite", image: "/movies/parasite.jpg" },
-  { title: "Avengers", image: "/movies/avengers.jpg" },
-  { title: "Batman: The Dark Knight", image: "/movies/batman.jpg" },
-  { title: "Fight Club", image: "/movies/fightclub.png" },
-  { title: "Pulp Fiction", image: "/movies/pulpfiction.jpg" },
-  { title: "The Shawshank Redemption", image: "/movies/shawshank.jpg" },
-  { title: "Forrest Gump", image: "/movies/forest.jpg" },
-];
+const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY;
+const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w200";
 
 function CreateList() {
   const [listName, setListName] = useState("");
   const [search, setSearch] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   const [selectedMovies, setSelectedMovies] = useState([]);
 
-  const filteredMovies = mockMovies
-    .filter(
-      (movie) =>
-        movie.title.toLowerCase().includes(search.toLowerCase()) &&
-        !selectedMovies.some((m) => m.title === movie.title)
-    )
-    .slice(0, 5); // limit results
+  useEffect(() => {
+    const fetchMovies = async () => {
+      if (!search) {
+        setSearchResults([]);
+        return;
+      }
+
+      try {
+        const res = await fetch(
+          `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
+            search
+          )}&api_key=${TMDB_API_KEY}`
+        );
+        const data = await res.json();
+
+        if (data.results) {
+          const filtered = data.results
+            .filter(
+              (movie) =>
+                movie.poster_path &&
+                !selectedMovies.some((m) => m.id === movie.id)
+            )
+            .slice(0, 5);
+          setSearchResults(filtered);
+        }
+      } catch (err) {
+        console.error("Failed to fetch movies", err);
+      }
+    };
+
+    fetchMovies();
+  }, [search, selectedMovies]);
 
   const addMovie = (movie) => {
     setSelectedMovies((prev) => [...prev, movie]);
   };
 
-  const removeMovie = (title) => {
-    setSelectedMovies((prev) => prev.filter((movie) => movie.title !== title));
+  const removeMovie = (id) => {
+    setSelectedMovies((prev) => prev.filter((movie) => movie.id !== id));
   };
 
   const handleSave = () => {
@@ -61,9 +79,9 @@ function CreateList() {
       </div>
 
       <div className="search-results">
-        {filteredMovies.length > 0 ? (
-          filteredMovies.map((movie, i) => (
-            <div key={i} className="search-result">
+        {searchResults.length > 0 ? (
+          searchResults.map((movie) => (
+            <div key={movie.id} className="search-result">
               <span>{movie.title}</span>
               <button onClick={() => addMovie(movie)}>Add</button>
             </div>
@@ -75,11 +93,14 @@ function CreateList() {
 
       <h2>Movies in This List</h2>
       <div className="selected-movies">
-        {selectedMovies.map((movie, i) => (
-          <div key={i} className="selected-movie-card">
-            <img src={movie.image} alt={movie.title} />
+        {selectedMovies.map((movie) => (
+          <div key={movie.id} className="selected-movie-card">
+            <img
+              src={`${TMDB_IMAGE_BASE}${movie.poster_path}`}
+              alt={movie.title}
+            />
             <p>{movie.title}</p>
-            <button onClick={() => removeMovie(movie.title)}>Remove</button>
+            <button onClick={() => removeMovie(movie.id)}>Remove</button>
           </div>
         ))}
       </div>

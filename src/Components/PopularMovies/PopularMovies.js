@@ -1,3 +1,5 @@
+// src/Components/PopularMovies/PopularMovies.js
+
 import React, { useEffect, useState } from "react";
 import "./PopularMovies.css";
 
@@ -20,9 +22,9 @@ function PopularMovies({ title }) {
           image: `${TMDB_IMAGE_BASE}${movie.poster_path}`,
         }));
         setMovies(trimmed);
-        setLoading(false);
       } catch (error) {
         console.error("Failed to fetch movies:", error);
+      } finally {
         setLoading(false);
       }
     };
