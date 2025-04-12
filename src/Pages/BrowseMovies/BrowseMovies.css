@@ -10,7 +10,30 @@ body, html {
   padding: 2rem 1rem;
 }
 
+/* Absolute dropdown below input */
+.browse-search-result {
+  display: block;
+  background: #222;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.browse-search-result li {
+  list-style: none;
+  padding: 10px 12px;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+  color: white;
+  transition: background 0.2s ease;
+}
+
+.browse-search-result li:hover {
+  background: #333;
+}
+
 .filters {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;

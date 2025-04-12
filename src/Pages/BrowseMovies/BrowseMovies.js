@@ -5,6 +5,7 @@ const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 
 const BrowseMovies = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   const [genre, setGenre] = useState("");
   const [year, setYear] = useState("");
   const [rating, setRating] = useState("");
@@ -30,9 +31,27 @@ const BrowseMovies = () => {
   };
 
   useEffect(() => {
-    fetchMovies();
-    // eslint-disable-next-line
-  }, []);
+    const fetchSearchResults = async () => {
+      if (!searchQuery.trim()) {
+        setSearchResults([]);
+        return;
+      }
+
+      try {
+        const res = await fetch(
+          `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(searchQuery)}`
+        );
+        const data = await res.json();
+        setSearchResults(data.results.slice(0, 5));
+      } catch (err) {
+        console.error("Failed to fetch suggestions", err);
+      }
+    };
+
+    const timeout = setTimeout(fetchSearchResults, 300);
+    return () => clearTimeout(timeout); // debounce
+  }, [searchQuery]);
+
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -49,6 +68,7 @@ const BrowseMovies = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
+
         <select value={genre} onChange={(e) => setGenre(e.target.value)}>
           <option value="">All Genres</option>
           <option value="28">Action</option>
@@ -63,7 +83,7 @@ const BrowseMovies = () => {
         </select>
         <select value={year} onChange={(e) => setYear(e.target.value)}>
           <option value="">Any Year</option>
-          {[...Array(24)].map((_, i) => {
+          {[...Array(25)].map((_, i) => {
             const y = 2025 - i;
             return <option key={y} value={y}>{y}</option>;
           })}
@@ -77,6 +97,23 @@ const BrowseMovies = () => {
         </select>
         <button type="submit">Search</button>
       </form>
+      
+      {searchResults.length > 0 && (
+          <ul className="browse-search-result">
+            {searchResults.map((movie) => (
+              <li
+                key={movie.id}
+                onClick={() => {
+                  setSearchQuery(movie.title);
+                  setSearchResults([]);
+                  fetchMovies(); // auto trigger
+                }}
+              >
+                {movie.title}
+              </li>
+            ))}
+          </ul>
+      )}
 
       {isLoading ? (
         <p>Loading...</p>
