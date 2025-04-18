@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom"; // ✅ import Link for routing
 import "./BrowseMovies.css";
 
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
@@ -123,7 +124,7 @@ const BrowseMovies = () => {
             <p>No results found.</p>
           ) : (
             movies.map((movie) => (
-              <div key={movie.id} className="movie-card">
+              <Link to={`/movie/${movie.id}`} key={movie.id} className="movie-card">
                 <img
                   src={
                     movie.poster_path
@@ -135,7 +136,7 @@ const BrowseMovies = () => {
                 <h3>{movie.title}</h3>
                 <p>{movie.release_date}</p>
                 <p>⭐ {parseFloat(movie.vote_average).toFixed(1)}</p>
-              </div>
+              </Link>
             ))
           )}
         </div>
