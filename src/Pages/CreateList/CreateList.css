@@ -110,3 +110,13 @@
     margin-top: 10px;
   }
   
+  .search-title-link,
+.selected-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
+.selected-link:hover {
+  text-decoration: underline;
+}

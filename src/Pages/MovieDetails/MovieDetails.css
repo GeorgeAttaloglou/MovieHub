@@ -133,3 +133,81 @@
 .movie-facts p {
   margin: 5px 0;
 }
+
+.movie-facts {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.movie-facts p {
+  margin: 5px 0;
+}
+
+.similar-section {
+  background: rgba(0, 0, 0, 0.8);
+  margin-bottom: 50px;
+  padding: 30px 0;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+.similar-section .carousel-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: left;
+  color: #a855f7;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  padding: 0 40px;
+  letter-spacing: 1px;
+}
+
+.similar-section .carousel-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: #a855f7;
+  margin-top: 10px;
+  border-radius: 2px;
+}
+
+.similar-section .movie-carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  scroll-snap-type: x mandatory;
+  padding: 20px 40px;
+  box-sizing: border-box;
+}
+
+.similar-section .movie-card {
+  flex: 0 0 auto;
+  width: 200px;
+  scroll-snap-align: start;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.similar-section .movie-card img {
+  width: 100%;
+  height: 80%;
+  border-radius: 8px;
+}
+
+.similar-section .movie-card p {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+  .similar-section .carousel-title,
+  .similar-section .movie-carousel {
+    padding: 0 16px;
+  }
+}
