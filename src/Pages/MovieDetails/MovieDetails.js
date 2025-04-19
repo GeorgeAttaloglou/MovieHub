@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import SimilarMoviesCarousel from "../../Components/SimilarMovies/SimilarMovies";
 import "./MovieDetails.css";
 
 const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY;
@@ -10,7 +11,6 @@ const MovieDetail = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [cast, setCast] = useState([]);
-  const [similarMovies, setSimilarMovies] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -38,21 +38,8 @@ const MovieDetail = () => {
       }
     };
 
-    const fetchSimilarMovies = async () => {
-      try {
-        const res = await fetch(
-          `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${TMDB_API_KEY}&language=en-US&page=1`
-        );
-        const data = await res.json();
-        setSimilarMovies(data.results || []);
-      } catch (err) {
-        console.error("Failed to fetch similar movies", err);
-      }
-    };
-
     fetchMovieDetails();
     fetchMovieCast();
-    fetchSimilarMovies();
   }, [id]);
 
   if (error) return <p>{error}</p>;
@@ -109,7 +96,7 @@ const MovieDetail = () => {
                   src={
                     actor.profile_path
                       ? `${PROFILE_IMG}${actor.profile_path}`
-                      : "/assets/no-photo.jpg"
+                      : "/pictures/portrait.jpg"
                   }
                   alt={actor.name}
                 />
@@ -121,26 +108,8 @@ const MovieDetail = () => {
         </div>
       </div>
 
-      {similarMovies.length > 0 && (
-        <div className="similar-section">
-          <h3 className="carousel-title">You May Also Like</h3>
-          <div className="movie-carousel">
-            {similarMovies.map((movie) => (
-              <Link to={`/movie/${movie.id}`} key={movie.id} className="movie-card">
-                <img
-                  src={
-                    movie.poster_path
-                      ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
-                      : "https://via.placeholder.com/200x300?text=No+Image"
-                  }
-                  alt={movie.title}
-                />
-                <p>{movie.title}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
+      
+      <SimilarMoviesCarousel movieId={id} />
     </>
   );
 };
