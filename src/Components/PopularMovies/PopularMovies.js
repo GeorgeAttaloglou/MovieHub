@@ -1,6 +1,5 @@
-// src/Components/PopularMovies/PopularMovies.js
-
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./PopularMovies.css";
 
 const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY;
@@ -18,6 +17,7 @@ function PopularMovies({ title }) {
         );
         const data = await response.json();
         const trimmed = data.results.map((movie) => ({
+          id: movie.id,
           title: movie.title,
           image: `${TMDB_IMAGE_BASE}${movie.poster_path}`,
         }));
@@ -40,11 +40,11 @@ function PopularMovies({ title }) {
           {loading ? (
             <p>Loading...</p>
           ) : (
-            movies.map((movie, index) => (
-              <div key={index} className="movie-card">
+            movies.map((movie) => (
+              <Link to={`/movie/${movie.id}`} key={movie.id} className="movie-card">
                 <img src={movie.image} alt={movie.title} />
                 <p>{movie.title}</p>
-              </div>
+              </Link>
             ))
           )}
         </div>

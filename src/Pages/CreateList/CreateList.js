@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import "./CreateList.css";
+import { Link } from "react-router-dom";
+
 
 const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w200";
@@ -82,9 +84,12 @@ function CreateList() {
         {searchResults.length > 0 ? (
           searchResults.map((movie) => (
             <div key={movie.id} className="search-result">
-              <span>{movie.title}</span>
+              <Link to={`/movie/${movie.id}`} className="search-title-link">
+                {movie.title}
+              </Link>
               <button onClick={() => addMovie(movie)}>Add</button>
             </div>
+
           ))
         ) : (
           <p className="no-results">No movies found.</p>
@@ -95,13 +100,13 @@ function CreateList() {
       <div className="selected-movies">
         {selectedMovies.map((movie) => (
           <div key={movie.id} className="selected-movie-card">
-            <img
-              src={`${TMDB_IMAGE_BASE}${movie.poster_path}`}
-              alt={movie.title}
-            />
-            <p>{movie.title}</p>
+            <Link to={`/movie/${movie.id}`} className="selected-link">
+              <img src={`${TMDB_IMAGE_BASE}${movie.poster_path}`} alt={movie.title} />
+              <p>{movie.title}</p>
+            </Link>
             <button onClick={() => removeMovie(movie.id)}>Remove</button>
           </div>
+
         ))}
       </div>
 

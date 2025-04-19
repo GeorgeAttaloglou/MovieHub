@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
+import { Link } from "react-router-dom";
 import "./BrowseMovies.css";
 
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
@@ -12,23 +13,36 @@ const BrowseMovies = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchMovies = async () => {
+  const fetchMovies = useCallback(async () => {
     setIsLoading(true);
-    let url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchQuery}`;
 
-    const res = await fetch(url);
-    const data = await res.json();
-    const filtered = data.results.filter((movie) => {
-      return (
-        (!genre || movie.genre_ids.includes(Number(genre))) &&
-        (!year || movie.release_date?.startsWith(year)) &&
-        (!rating || movie.vote_average >= Number(rating))
-      );
-    });
+    let url = searchQuery.trim()
+      ? `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(searchQuery)}`
+      : `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
 
-    setMovies(filtered);
-    setIsLoading(false);
-  };
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+
+      const filtered = data.results.filter((movie) => {
+        return (
+          (!genre || movie.genre_ids.includes(Number(genre))) &&
+          (!year || movie.release_date?.startsWith(year)) &&
+          (!rating || movie.vote_average >= Number(rating))
+        );
+      });
+
+      setMovies(filtered);
+    } catch (err) {
+      console.error("Error fetching movies", err);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [searchQuery, genre, year, rating]);
+
+  useEffect(() => {
+    fetchMovies(); // Load popular or filtered
+  }, [fetchMovies]);
 
   useEffect(() => {
     const fetchSearchResults = async () => {
@@ -51,7 +65,6 @@ const BrowseMovies = () => {
     const timeout = setTimeout(fetchSearchResults, 300);
     return () => clearTimeout(timeout); // debounce
   }, [searchQuery]);
-
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -81,6 +94,7 @@ const BrowseMovies = () => {
           <option value="80">Crime</option>
           <option value="9648">Mystery</option>
         </select>
+
         <select value={year} onChange={(e) => setYear(e.target.value)}>
           <option value="">Any Year</option>
           {[...Array(25)].map((_, i) => {
@@ -88,6 +102,7 @@ const BrowseMovies = () => {
             return <option key={y} value={y}>{y}</option>;
           })}
         </select>
+
         <select value={rating} onChange={(e) => setRating(e.target.value)}>
           <option value="">All Ratings</option>
           <option value="9">9+</option>
@@ -95,24 +110,25 @@ const BrowseMovies = () => {
           <option value="7">7+</option>
           <option value="6">6+</option>
         </select>
+
         <button type="submit">Search</button>
       </form>
-      
+
       {searchResults.length > 0 && (
-          <ul className="browse-search-result">
-            {searchResults.map((movie) => (
-              <li
-                key={movie.id}
-                onClick={() => {
-                  setSearchQuery(movie.title);
-                  setSearchResults([]);
-                  fetchMovies(); // auto trigger
-                }}
-              >
-                {movie.title}
-              </li>
-            ))}
-          </ul>
+        <ul className="browse-search-result">
+          {searchResults.map((movie) => (
+            <li
+              key={movie.id}
+              onClick={() => {
+                setSearchQuery(movie.title);
+                setSearchResults([]);
+                fetchMovies();
+              }}
+            >
+              {movie.title}
+            </li>
+          ))}
+        </ul>
       )}
 
       {isLoading ? (
@@ -123,7 +139,7 @@ const BrowseMovies = () => {
             <p>No results found.</p>
           ) : (
             movies.map((movie) => (
-              <div key={movie.id} className="movie-card">
+              <Link to={`/movie/${movie.id}`} key={movie.id} className="movie-card">
                 <img
                   src={
                     movie.poster_path
@@ -135,7 +151,7 @@ const BrowseMovies = () => {
                 <h3>{movie.title}</h3>
                 <p>{movie.release_date}</p>
                 <p>⭐ {parseFloat(movie.vote_average).toFixed(1)}</p>
-              </div>
+              </Link>
             ))
           )}
         </div>

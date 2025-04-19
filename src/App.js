@@ -13,6 +13,7 @@ import ProfileLists from "./Pages/Profile/ProfilePages/ProfileLists";
 import ProfileStats from "./Pages/Profile/ProfilePages/ProfileStats";
 import Log from "./Pages/Log/Log";
 import Footer from "./Components/Footer/Footer"; // Corrected Footer component path
+import MovieDetail from "./Pages/MovieDetails/MovieDetails";
 
 function App() {
   return (
@@ -26,7 +27,8 @@ function App() {
         <Route path="/profile" element={<Profile/>} />
         <Route path="/log" element={<Log/>} />
         <Route path="/profilelists" element={<ProfileLists/>} />
-        <Route path="/profilestats" element={<ProfileStats/>} />  
+        <Route path="/profilestats" element={<ProfileStats/>} />
+        <Route path="/movie/:id" element={<MovieDetail />} />  
       </Routes>
       <Footer />
     </>
