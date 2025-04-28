@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import React from "react";
 import "./LandingPage.css";
 import PopularMovies from "../../Components/PopularMovies/PopularMovies";
+import ComingSoon from "../../Components/ComingSoon/ComingSoon";
+import RecentReleases from "../../Components/RecentReleases/RecentReleases";
 
 
 const LandingPage = () => {
@@ -59,6 +61,10 @@ const LandingPage = () => {
       </section>
 
       <PopularMovies title="Popular Movies" />
+
+      <RecentReleases title="Recent Releases" />
+
+      <ComingSoon title="Coming Soon" />
     </div>
   );
 };
