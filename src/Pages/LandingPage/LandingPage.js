@@ -38,7 +38,7 @@ const LandingPage = () => {
         <div className="feature-card">
           <span role="img" aria-label="Recommend">🎯</span>
           <h3>Recommendations</h3>
-          <p>Coming soon...</p>
+          <p>Get personalized movie suggestions based on your preferences.</p>
         </div>
       </section>
 
@@ -48,7 +48,8 @@ const LandingPage = () => {
           { number: "01", title: "Create an Account", desc: "Sign up in seconds to start tracking your movie journey." },
           { number: "02", title: "Watch a Movie", desc: "Enjoy your favorite films, whether at home or the cinema." },
           { number: "03", title: "Log and Review", desc: "Record the movies you watched and optionally write reviews." },
-          { number: "04", title: "Make Lists", desc: "Organize your favorites into personal watchlists and categories." },
+          { number: "04", title: "Get Recommendations", desc: "Receive tailored movie suggestions based on your activity." },
+          { number: "05", title: "Make Lists", desc: "Organize your favorites into personal watchlists and categories." },
         ].map(({ number, title, desc }, index) => (
           <div key={index} className="step">
             <div className="step-number">{number}</div>
