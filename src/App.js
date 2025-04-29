@@ -14,6 +14,7 @@ import ProfileStats from "./Pages/Profile/ProfilePages/ProfileStats";
 import Log from "./Pages/Log/Log";
 import Footer from "./Components/Footer/Footer"; // Corrected Footer component path
 import MovieDetail from "./Pages/MovieDetails/MovieDetails";
+import MovieLog from "./Pages/MovieLog/MovieLog"; // Import MovieLog page
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/profilelists" element={<ProfileLists/>} />
         <Route path="/profilestats" element={<ProfileStats/>} />
         <Route path="/movie/:id" element={<MovieDetail />} />  
+        <Route path="/movie-log/:id" element={<MovieLog />} /> {/* MovieLog page */}
       </Routes>
       <Footer />
     </>
