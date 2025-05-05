@@ -17,7 +17,6 @@ A React-based web application developed by Γιώργος Ατταλόγλου (
    ```bash
    git clone https://github.com/GeorgeAttaloglou/JS_App.git
    cd JS_App
-````
 
 2. **Install dependencies:**
 
