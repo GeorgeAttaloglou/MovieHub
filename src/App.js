@@ -15,10 +15,11 @@ import Log from "./Pages/Log/Log";
 import Footer from "./Components/Footer/Footer"; // Corrected Footer component path
 import MovieDetail from "./Pages/MovieDetails/MovieDetails";
 import MovieLog from "./Pages/MovieLog/MovieLog"; // Import MovieLog page
+import { AuthProvider } from "./Contexts/authContexts";
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Header />
       <Routes>
         <Route path="/" element={<LandingPage />} />
@@ -33,7 +34,7 @@ function App() {
         <Route path="/movie-log/:id" element={<MovieLog />} /> {/* MovieLog page */}
       </Routes>
       <Footer />
-    </>
+    </AuthProvider>
   );
 }
 

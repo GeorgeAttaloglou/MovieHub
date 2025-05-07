@@ -1,6 +1,5 @@
-// src/pages/CreateList/CreateList.js
-
 import React, { useState, useEffect } from "react";
+import { supabase } from "../../supabaseClient"
 import "./CreateList.css";
 import { Link } from "react-router-dom";
 
@@ -55,8 +54,48 @@ function CreateList() {
     setSelectedMovies((prev) => prev.filter((movie) => movie.id !== id));
   };
 
-  const handleSave = () => {
-    alert(`List "${listName}" with ${selectedMovies.length} movies saved!`);
+  /* This always throws an error but th logic should be good. Need to implement login page */
+  const handleSaveList = async () => {
+    if (!listName.trim()) {
+      alert("Please enter a list name.");
+      return;
+    }
+
+    if (selectedMovies.length === 0) {
+      alert("Please add at least one movie to the list.");
+      return;
+    }
+
+    try {
+      const user = supabase.auth.user();
+      if (!user) {
+        alert("You must be logged in to save a list.");
+        return;
+      }
+
+      const {error} = await supabase
+        .from("lists")
+        .insert([
+          {
+        list_title: listName,
+        user_id: user.id,
+        list_id: Math.floor(Math.random() * 1000000),
+        movie_ids: selectedMovies.map((movie) => movie.id),
+          },
+        ]);
+
+      if (error) {
+        console.error("Error saving list:", error);
+        alert("Failed to save the list. Please try again.");
+      } else {
+        alert("List saved successfully!");
+        setListName("");
+        setSelectedMovies([]);
+      }
+    } catch (err) {
+      console.error("Unexpected error:", err);
+      alert("An unexpected error occurred. Please try again.");
+    }
   };
 
   return (
@@ -89,7 +128,6 @@ function CreateList() {
               </Link>
               <button onClick={() => addMovie(movie)}>Add</button>
             </div>
-
           ))
         ) : (
           <p className="no-results">No movies found.</p>
@@ -106,11 +144,10 @@ function CreateList() {
             </Link>
             <button onClick={() => removeMovie(movie.id)}>Remove</button>
           </div>
-
         ))}
       </div>
 
-      <button className="save-button" onClick={handleSave}>
+      <button className="save-button" onClick={handleSaveList}>
         Save List
       </button>
     </div>

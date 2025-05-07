@@ -41,6 +41,11 @@ const Header = () => {
               <Link to="/log">
                 <button className="btn btn-gradient">LOG</button>
               </Link>
+
+              {/* FIX THIS !!! */}
+              <Link to="/login">
+                <button className="btn btn-gradient">Login</button>
+              </Link>
               
             </div>
           </Container>
