@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { supabase } from "../../supabaseClient"
 import SimilarMoviesCarousel from "../../Components/SimilarMovies/SimilarMovies";
 import "./MovieLog.css";
 
@@ -29,17 +30,38 @@ function MovieLog() {
     fetchMovie();
   }, [id]);
 
-  const handleLog = () => {
-    const logEntry = {
-      movieId: id,
-      title: movie?.title,
-      rating,
-      review,
-      date: new Date().toISOString(),
-    };
+  const handleLog = async() => {
+    if (!rating) {
+      alert("Please select a rating.");
+      return;
+    }
 
-    console.log("Movie logged:", logEntry);
-    alert("Movie logged successfully!");
+    try {
+      const user = supabase.auth.user();
+      if (!user) {
+        alert("You need to be logged in to log a movie.");
+        return;
+      }
+      const {error} = await supabase
+        .from("logs")
+        .insert([
+          {
+            log_id: Math.floor(Math.random() * 1000000),
+            user_id: user.id,
+            review: review,
+            movie_id: id,
+            rating: rating,
+          },
+        ]);
+      if (error) {
+        console.error("Error logging movie:", error);
+        alert("Failed to log movie. Please try again.");
+      }
+      alert("Movie logged successfully!");
+    } catch (err) {
+      console.error("Unexpected error:", err);
+      alert("An unexpected error occurred. Please try again.");
+    }
   };
 
   if (!movie) return <p>Loading...</p>;
