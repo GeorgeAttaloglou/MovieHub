@@ -60,30 +60,36 @@ function CreateList() {
       alert("Please enter a list name.");
       return;
     }
-
+  
     if (selectedMovies.length === 0) {
       alert("Please add at least one movie to the list.");
       return;
     }
-
+  
     try {
-      const user = supabase.auth.user();
+      const {
+        data: { session },
+        error: sessionError
+      } = await supabase.auth.getSession();
+  
+      if (sessionError) throw sessionError;
+  
+      const user = session?.user;
+  
       if (!user) {
         alert("You must be logged in to save a list.");
         return;
       }
-
-      const {error} = await supabase
-        .from("lists")
-        .insert([
-          {
-        list_title: listName,
-        user_id: user.id,
-        list_id: Math.floor(Math.random() * 1000000),
-        movie_ids: selectedMovies.map((movie) => movie.id),
-          },
-        ]);
-
+  
+      const { error } = await supabase.from("lists").insert([
+        {
+          list_title: listName,
+          user_id: user.id,
+          list_id: Math.floor(Math.random() * 1000000),
+          movie_ids: selectedMovies.map((movie) => movie.id),
+        },
+      ]);
+  
       if (error) {
         console.error("Error saving list:", error);
         alert("Failed to save the list. Please try again.");
@@ -94,9 +100,10 @@ function CreateList() {
       }
     } catch (err) {
       console.error("Unexpected error:", err);
-      alert("An unexpected error occurred. Please try again.");
+      alert(`An unexpected error occurred: ${err.message}`);
     }
   };
+  
 
   return (
     <div className="create-list-container">
