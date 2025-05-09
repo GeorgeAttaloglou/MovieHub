@@ -16,6 +16,7 @@ import Footer from "./Components/Footer/Footer"; // Corrected Footer component p
 import MovieDetail from "./Pages/MovieDetails/MovieDetails";
 import MovieLog from "./Pages/MovieLog/MovieLog"; // Import MovieLog page
 import { AuthProvider } from "./Contexts/authContexts";
+import Login from "./Pages/Login/Login";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/profilestats" element={<ProfileStats/>} />
         <Route path="/movie/:id" element={<MovieDetail />} />  
         <Route path="/movie-log/:id" element={<MovieLog />} /> {/* MovieLog page */}
+        <Route path="/login" element={<Login />} />
       </Routes>
       <Footer />
     </AuthProvider>

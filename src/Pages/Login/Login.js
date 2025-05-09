@@ -1,7 +1,6 @@
 import { useState } from "react"
-import { useAuth } from "../contexts/AuthContext"
+import { useAuth } from "../../Contexts/authContexts"
 import './Login.css'
-
 
 export default function Login() {
   const { login, signup } = useAuth()
@@ -17,10 +16,10 @@ export default function Login() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="login-form">
       <h2>{isLogin ? "Login" : "Sign Up"}</h2>
-      <input placeholder="email" value={email} onChange={e => setEmail(e.target.value)} />
-      <input type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)} />
+      <input placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+      <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
       <button type="submit">{isLogin ? "Login" : "Sign Up"}</button>
       <p onClick={() => setIsLogin(!isLogin)}>{isLogin ? "Need to sign up?" : "Already have an account?"}</p>
     </form>
