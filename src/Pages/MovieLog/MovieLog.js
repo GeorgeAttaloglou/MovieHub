@@ -30,39 +30,49 @@ function MovieLog() {
     fetchMovie();
   }, [id]);
 
-  const handleLog = async() => {
+  const handleLog = async () => {
     if (!rating) {
       alert("Please select a rating.");
       return;
     }
 
     try {
-      const user = supabase.auth.user();
+      const {
+        data: { session },
+        error: sessionError
+      } = await supabase.auth.getSession();
+
+      if (sessionError) throw sessionError;
+
+      const user = session?.user;
+
       if (!user) {
         alert("You need to be logged in to log a movie.");
         return;
       }
-      const {error} = await supabase
-        .from("logs")
-        .insert([
-          {
-            log_id: Math.floor(Math.random() * 1000000),
-            user_id: user.id,
-            review: review,
-            movie_id: id,
-            rating: rating,
-          },
-        ]);
+
+      const { error } = await supabase.from("logs").insert([
+        {
+          log_id: Math.floor(Math.random() * 1000000),
+          user_id: user.id,
+          review: review,
+          movie_id: id,
+          rating: rating,
+        },
+      ]);
+
       if (error) {
         console.error("Error logging movie:", error);
         alert("Failed to log movie. Please try again.");
+      } else {
+        alert("Movie logged successfully!");
       }
-      alert("Movie logged successfully!");
     } catch (err) {
       console.error("Unexpected error:", err);
-      alert("An unexpected error occurred. Please try again.");
+      alert(`An unexpected error occurred: ${err.message}`);
     }
-  };
+  }
+
 
   if (!movie) return <p>Loading...</p>;
 
