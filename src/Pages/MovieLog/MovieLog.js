@@ -53,6 +53,7 @@ function MovieLog() {
           review: review,
           movie_id: id,
           rating: rating,
+          movie_name: movie.title,
         },
       ]);
 

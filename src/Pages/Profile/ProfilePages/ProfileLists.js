@@ -39,9 +39,7 @@ function ProfileLists() {
           className="profile-image-lists"
         />
         <div className="profile-text-lists">
-          <h1>Welcome {user?.email}</h1>
-          <p>Joined {user?.created_at}</p>
-          <p>User ID: {user?.id}</p>
+          <h1>Welcome {user?.user_name}</h1>
         </div>
       </div>
 
