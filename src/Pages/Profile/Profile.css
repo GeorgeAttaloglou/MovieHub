@@ -1,63 +1,150 @@
+/* src/Pages/Profile/Profile.css */
+
 .profile-container {
-    display: flex;
-    align-items: center;
-    margin: 30px;
-    padding: 20px;
-    width: calc(100% - 70px); 
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-    border-radius: 16px;
-  }
-  
-  .profile-image {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    margin-right: 20px;
-  }
-  
-  .profile-text {
-    flex: 2;
-    color: #a855f7; /* Purple */
-  }
-  
+  display: flex;
+  align-items: center;
+  margin: 30px;
+  padding: 20px;
+  width: calc(100% - 70px); 
+  background: rgba(0, 0, 0, 0.8);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+}
 
-  .tabs-wrapper {
-    display: flex;
-    padding: 0 10px;
-    margin-top: 20px;
-  }
-  
-  .tab-button {
-    padding: 16px 24px;
-    color: white;
-    background-color: black; 
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    font-weight: bold;
-    margin-right: 4px;
-    text-decoration: none; /* <- This removes the underline */
-  }
-  
-  .tab-button.active {
-    background-color: gray;
-  }
+.profile-image {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
 
-  .profile-bottom-section {
-    padding: 0 10px 20px 10px;
-  }
+.profile-text {
+  flex: 2;
+  color: #a855f7;
+}
 
-  .profile-content {
-    background-color: gray;
-    padding: 20px 10px;
-    margin: 0 10px;
-    border-radius: 0 12px 12px 12px;
-  }
+.tabs-wrapper {
+  display: flex;
+  padding: 0 10px;
+  margin-top: 20px;
+}
 
+.tab-button {
+  padding: 16px 24px;
+  color: white;
+  background-color: black;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  font-weight: bold;
+  margin-right: 4px;
+  text-decoration: none;
+}
+
+.tab-button.active {
+  background-color: #1a1a1a;
+}
+
+.profile-bottom-section {
+  padding: 0 10px 20px 10px;
+}
+
+.profile-content {
+  background-color: #1a1a1a;
+  padding: 20px 10px;
+  margin: 0 10px;
+  border-radius: 0 12px 12px 12px;
+}
 
 .diary-entry {
-  background-color: #363636;
+  background-color: #292929;
   padding: 16px;
   border-radius: 12px;
   color: #bf8fdf;
+}
+
+.no-results {
+  font-style: italic;
+  color: #888;
+}
+
+/* Enhanced Diary Log UI */
+.log-row {
+  display: flex;
+  align-items: flex-start;
+  background: #111;
+  margin: 15px 0;
+  padding: 16px;
+  border-radius: 12px;
+  gap: 20px;
+}
+
+.log-poster {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.log-row-info {
+  flex: 1;
+}
+
+.log-row-info h3 {
+  margin: 0;
+  color: #a855f7;
+}
+
+.log-review {
+  margin-top: 10px;
+  color: #ccc;
+  font-size: 0.95rem;
+}
+
+.log-date {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.log-stars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.star {
+  font-size: 1.3rem;
+  color: #444;
+}
+
+.star.filled {
+  color: #ffb347;
+}
+
+.rating-text {
+  font-size: 0.95rem;
+  margin-left: 8px;
+  color: #ff7eb3;
+}
+
+.log-title-link {
+  color: #a855f7;
+  text-decoration: none;
+}
+
+.log-title-link:hover {
+  text-decoration: underline;
+}
+
+
+@media (max-width: 600px) {
+  .rating-stars {
+    display: none;
+  }
+
+  .rating-numeric {
+    display: block;
+  }
 }

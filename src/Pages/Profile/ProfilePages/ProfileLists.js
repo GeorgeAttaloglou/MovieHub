@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "../../../supabaseClient";
 import { useAuth } from "../../../Contexts/authContexts";
-import "./ProfileLists.css";
 import { Link } from "react-router-dom";
+import "./ProfileLists.css";
+
+const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w200";
 
 function ProfileLists() {
   const { user } = useAuth();
   const [lists, setLists] = useState([]);
+  const [expandedListIds, setExpandedListIds] = useState([]);
+  const [movieDetails, setMovieDetails] = useState({});
 
   useEffect(() => {
     if (!user) return;
@@ -20,25 +24,43 @@ function ProfileLists() {
 
       if (error) {
         console.error("Error fetching lists", error);
-        alert(`An unexpected error occurred: ${error.message}`);
       } else {
         setLists(data);
+
+        const movieIds = [...new Set(data.flatMap(list => list.movie_ids))];
+        const details = {};
+
+        await Promise.all(
+          movieIds.map(async (id) => {
+            try {
+              const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`);
+              const json = await res.json();
+              details[id] = json;
+            } catch (err) {
+              console.error("Error fetching movie", err);
+            }
+          })
+        );
+
+        setMovieDetails(details);
       }
     };
 
     fetchLists();
   }, [user]);
 
+  const toggleList = (id) => {
+    setExpandedListIds((prev) =>
+      prev.includes(id) ? prev.filter((lid) => lid !== id) : [...prev, id]
+    );
+  };
+
   return (
     <div>
       <div className="profile-container-lists">
-        <img
-          src="pictures/profileicon.png"
-          alt="User"
-          className="profile-image-lists"
-        />
+        <img src="pictures/profileicon.png" alt="User" className="profile-image-lists" />
         <div className="profile-text-lists">
-          <h1>Welcome {user?.user_name}</h1>
+          <h1>Welcome {user?.user_name || "back!"}</h1>
         </div>
       </div>
 
@@ -53,24 +75,31 @@ function ProfileLists() {
           <div className="diary-entry-lists">
             <h2>Lists</h2>
             {lists.length === 0 ? (
-              <p>no lists found.</p>
+              <p>No lists found.</p>
             ) : (
-              <ul>
-                {lists.map((list) => {
-                  const titles = Array.isArray(list.movie_titles)
-                    ? list.movie_titles
-                    : typeof list.movie_titles === "string"
-                    ? JSON.parse(list.movie_titles)
-                    : [];
-
-                  return (
-                    <li key={list.id}>
-                      <strong>{list.list_title}</strong><br />
-                      Movies: {Array.isArray(titles) ? titles.join(", ") : "No titles"}
-                    </li>
-                  );
-                })}
-              </ul>
+              lists.map((list) => (
+                <div key={list.list_id} className="list-group">
+                  <div className="list-title" onClick={() => toggleList(list.list_id)}>
+                    {list.list_title}
+                    <span>{expandedListIds.includes(list.list_id) ? " ▲" : " ▼"}</span>
+                  </div>
+                  {expandedListIds.includes(list.list_id) && (
+                    <div className="list-movie-grid">
+                      {list.movie_ids.map((id) => {
+                        const movie = movieDetails[id];
+                        return movie ? (
+                          <Link to={`/movie/${id}`} key={id} className="movie-card-link">
+                            <div className="movie-card">
+                              <img src={`${TMDB_IMAGE_BASE}${movie.poster_path}`} alt={movie.title} />
+                              <p>{movie.title}</p>
+                            </div>
+                          </Link>
+                        ) : null;
+                      })}
+                    </div>
+                  )}
+                </div>
+              ))
             )}
           </div>
         </div>

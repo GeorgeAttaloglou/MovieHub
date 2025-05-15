@@ -1,34 +1,33 @@
 .profile-container-stats {
   display: flex;
-    align-items: center;
-    margin: 30px;
-    padding: 20px;
-    width: calc(100% - 70px); 
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-    border-radius: 16px;
-  }
-  
-  .profile-image-stats {
+  align-items: center;
+  margin: 30px;
+  padding: 20px;
+  width: calc(100% - 70px);
+  background: rgba(0, 0, 0, 0.8);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+}
+
+.profile-image-stats {
   width: 140px;
   height: 140px;
   border-radius: 50%;
   margin-right: 20px;
-  }
-  
-  .profile-text-stats {
-  flex: 2;
-  color: #a855f7; /* Purple */
-  }
-  
+}
 
-  .tabs-wrapper-stats {
+.profile-text-stats {
+  flex: 2;
+  color: #a855f7;
+}
+
+.tabs-wrapper-stats {
   display: flex;
   padding: 0 10px;
   margin-top: 20px;
-  }
-  
-  .tab-button-stats {
+}
+
+.tab-button-stats {
   padding: 16px 24px;
   color: white;
   background-color: black;
@@ -37,28 +36,58 @@
   border-top-right-radius: 20px;
   font-weight: bold;
   margin-right: 4px;
-  text-decoration: none; /* <- This removes the underline */
-  }
-  
-  .tab-button-stats.active {
-  background-color: gray;
-  }
+  text-decoration: none;
+}
 
-  .profile-bottom-section-stats {
+.tab-button-stats.active {
+  background-color: #1a1a1a;
+}
+
+.profile-bottom-section-stats {
   padding: 0 10px 20px 10px;
-  }
+}
 
-  .profile-content-stats {
-    background-color: gray;
-    padding: 20px 10px;
-    margin: 0 10px;
-    border-radius: 0 12px 12px 12px;
-  }
+.profile-content-stats {
+  background-color: #1a1a1a;
+  padding: 20px 10px;
+  margin: 0 10px;
+  border-radius: 0 12px 12px 12px;
+}
 
+.stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+  padding: 20px;
+}
 
-.diary-entry-stats {
-  background-color: #363636;
-  padding: 16px;
+.stat-card {
+  background-color: #2a2a2a;
   border-radius: 12px;
-  color: #bf8fdf;
+  padding: 30px 20px;
+  flex: 1 1 calc(50% - 20px); /* 2 per row */
+  max-width: calc(50% - 20px);
+  color: #ff7eb3;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .stat-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+.stat-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #a855f7;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
 }
