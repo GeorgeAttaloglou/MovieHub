@@ -6,7 +6,6 @@ import ComingSoon from "../../Components/ComingSoon/ComingSoon";
 import RecentReleases from "../../Components/RecentReleases/RecentReleases";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Contexts/authContexts";
-import { v4 as uuidv4 } from 'uuid'
 
 
 const LandingPage = () => {
@@ -49,8 +48,8 @@ const navigate = useNavigate();
           style={{ cursor: "pointer" }}
         >
           <span role="img" aria-label="Recommend">🎯</span>
-          <h3>Recommendations</h3>
-          <p>Get personalized movie suggestions based on your preferences.</p>
+          <h3>Statistics</h3>
+          <p>Get a deep dive into your movie watching habits through personalised statistics</p>
         </div>
 
       </section>
