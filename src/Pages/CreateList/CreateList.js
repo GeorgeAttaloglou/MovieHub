@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../../supabaseClient"
-import { useAuth } from '../../Contexts/authContexts'
-import { v4 as uuidv4 } from 'uuid'
 import "./CreateList.css";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../Contexts/authContexts";
+import { v4 as uuidv4 } from 'uuid'
 
 const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w200";
@@ -15,6 +14,7 @@ function CreateList() {
   const [searchResults, setSearchResults] = useState([]);
   const [selectedMovies, setSelectedMovies] = useState([]);
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -25,9 +25,7 @@ function CreateList() {
 
       try {
         const res = await fetch(
-          `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
-            search
-          )}&api_key=${TMDB_API_KEY}`
+          `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(search)}&api_key=${TMDB_API_KEY}`
         );
         const data = await res.json();
 
@@ -57,7 +55,6 @@ function CreateList() {
     setSelectedMovies((prev) => prev.filter((movie) => movie.id !== id));
   };
 
-  /* This always throws an error but th logic should be good. Need to implement login page */
   const handleSaveList = async () => {
     if (!listName.trim()) {
       alert("Please enter a list name.");
@@ -76,7 +73,7 @@ function CreateList() {
         return;
       }
 
-      const { data, error } = await supabase.from("lists").insert([
+      const { error } = await supabase.from("lists").insert([
         {
           list_title: listName,
           user_id: user.id,
@@ -99,9 +96,18 @@ function CreateList() {
     }
   };
 
-
   return (
     <div className="create-list-container">
+      {/* Modal blocker */}
+      {!user && (
+        <div className="create-list-blocker">
+          <div className="blocker-modal">
+            <h2>You need to be logged in to use this feature 😔</h2>
+            <button onClick={() => navigate("/login")}>Go to Login</button>
+          </div>
+        </div>
+      )}
+
       <h1>Create a New Movie List</h1>
 
       <input
@@ -110,6 +116,7 @@ function CreateList() {
         placeholder="Enter list name..."
         value={listName}
         onChange={(e) => setListName(e.target.value)}
+        disabled={!user}
       />
 
       <div className="search-section">
@@ -118,6 +125,7 @@ function CreateList() {
           placeholder="Search for a movie..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          disabled={!user}
         />
       </div>
 
@@ -128,7 +136,9 @@ function CreateList() {
               <Link to={`/movie/${movie.id}`} className="search-title-link">
                 {movie.title}
               </Link>
-              <button onClick={() => addMovie(movie)}>Add</button>
+              <button onClick={() => addMovie(movie)} disabled={!user}>
+                Add
+              </button>
             </div>
           ))
         ) : (
@@ -141,15 +151,20 @@ function CreateList() {
         {selectedMovies.map((movie) => (
           <div key={movie.id} className="selected-movie-card">
             <Link to={`/movie/${movie.id}`} className="selected-link">
-              <img src={`${TMDB_IMAGE_BASE}${movie.poster_path}`} alt={movie.title} />
+              <img
+                src={`${TMDB_IMAGE_BASE}${movie.poster_path}`}
+                alt={movie.title}
+              />
               <p>{movie.title}</p>
             </Link>
-            <button onClick={() => removeMovie(movie.id)}>Remove</button>
+            <button onClick={() => removeMovie(movie.id)} disabled={!user}>
+              Remove
+            </button>
           </div>
         ))}
       </div>
 
-      <button className="save-button" onClick={handleSaveList}>
+      <button className="save-button" onClick={handleSaveList} disabled={!user}>
         Save List
       </button>
     </div>

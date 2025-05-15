@@ -4,9 +4,17 @@ import "./LandingPage.css";
 import PopularMovies from "../../Components/PopularMovies/PopularMovies";
 import ComingSoon from "../../Components/ComingSoon/ComingSoon";
 import RecentReleases from "../../Components/RecentReleases/RecentReleases";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../Contexts/authContexts";
+import { v4 as uuidv4 } from 'uuid'
 
 
 const LandingPage = () => {
+
+const { user } = useAuth();
+const navigate = useNavigate();
+
+
   return (
     <div className="landing-page">
       <section className="hero-section">
@@ -35,11 +43,16 @@ const LandingPage = () => {
             </div>
           </Link>
         ))}
-        <div className="feature-card">
+        <div
+          className="feature-card"
+          onClick={() => navigate(user ? "/profilestats" : "/login")}
+          style={{ cursor: "pointer" }}
+        >
           <span role="img" aria-label="Recommend">🎯</span>
           <h3>Recommendations</h3>
           <p>Get personalized movie suggestions based on your preferences.</p>
         </div>
+
       </section>
 
       <section id="how-it-works" className="how-it-works-section">
