@@ -1,6 +1,6 @@
-import React, { use, useEffect, useState } from "react";
-import { supabase } from "../../../supabaseClient"
-import { useAuth } from "../../../Contexts/authContexts"
+import React, { useEffect, useState } from "react";
+import { supabase } from "../../../supabaseClient";
+import { useAuth } from "../../../Contexts/authContexts";
 import "./ProfileLists.css";
 import { Link } from "react-router-dom";
 
@@ -29,7 +29,6 @@ function ProfileLists() {
     fetchLists();
   }, [user]);
 
-
   return (
     <div>
       <div className="profile-container-lists">
@@ -49,23 +48,30 @@ function ProfileLists() {
           <Link to="/profilelists" className="tab-button-lists active">My lists</Link>
           <Link to="/profilestats" className="tab-button-lists">My stats</Link>
         </div>
+
         <div className="profile-content-lists">
           <div className="diary-entry-lists">
             <h2>Lists</h2>
-            <p>
-              {lists.length === 0 ? (
-                <p>no lists found.</p>
-              ) : (
-                <ul>
-                  {lists.map((list) => (
+            {lists.length === 0 ? (
+              <p>no lists found.</p>
+            ) : (
+              <ul>
+                {lists.map((list) => {
+                  const titles = Array.isArray(list.movie_titles)
+                    ? list.movie_titles
+                    : typeof list.movie_titles === "string"
+                    ? JSON.parse(list.movie_titles)
+                    : [];
+
+                  return (
                     <li key={list.id}>
                       <strong>{list.list_title}</strong><br />
-                      Movies: {list.movie_ids.join(", ")}
+                      Movies: {Array.isArray(titles) ? titles.join(", ") : "No titles"}
                     </li>
-                  ))}
-                </ul>
-              )}
-            </p>
+                  );
+                })}
+              </ul>
+            )}
           </div>
         </div>
       </div>

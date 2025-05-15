@@ -79,6 +79,7 @@ function CreateList() {
           user_id: user.id,
           list_id: uuidv4(),
           movie_ids: selectedMovies.map((movie) => movie.id),
+          movie_titles: selectedMovies.map((movie) => movie.title),
         },
       ]);
 
