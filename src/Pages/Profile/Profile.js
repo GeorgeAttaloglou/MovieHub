@@ -40,9 +40,7 @@ function Profile() {
           className="profile-image"
         />
         <div className="profile-text">
-          <h1>Welcome {user?.email}</h1>
-          <p>Joined {user?.created_at}</p>
-          <p>User ID: {user?.id}</p>
+          <h1>Welcome {user?.user_name}</h1>
         </div>
       </div>
 
@@ -62,7 +60,7 @@ function Profile() {
                 <ul>
                   {logs.map((log) => (
                     <li key={log.id}>
-                      Movie ID: {log.movie_id}<br />
+                      Title: {log.movie_name}<br />
                       Rating: {log.rating} / 10<br />
                       Review: {log.review || "—"}
                     </li>
