@@ -62,7 +62,8 @@ function Profile() {
                     <li key={log.id}>
                       Title: {log.movie_name}<br />
                       Rating: {log.rating} / 10<br />
-                      Review: {log.review || "—"}
+                      Review: {log.review || "—"}<br />
+                      Logged on: {new Date(log.created_at).toLocaleDateString()}<br />
                     </li>
                   ))}
                 </ul>
