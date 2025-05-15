@@ -15,6 +15,26 @@
   transform: scale(1.05);
 }
 
+/* Secondary Gradient for Login/Logout */
+.btn-gradient-secondary {
+  background: linear-gradient(45deg, #a855f7, #9333ea); /* purple tones */
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-gradient-secondary:hover {
+  background: linear-gradient(45deg, #9333ea, #a855f7);
+  color: white;
+  transform: scale(1.05);
+}
+
+
+
 /* General Navbar Styling */
 .custom-navbar {
   position: fixed !important;
@@ -41,9 +61,8 @@
 }
 
 
-/* Small Screen Navbar - Center Navbar Links */
 /* Prevent icons from overlapping center brand on mobile */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .custom-navbar .container {
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -62,6 +81,11 @@
   }
 
   .btn-gradient {
+    font-size: 0.75rem;
+    padding: 5px 8px;
+  }
+
+  .btn-gradient-secondary {
     font-size: 0.75rem;
     padding: 5px 8px;
   }
