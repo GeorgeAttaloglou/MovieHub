@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../../supabaseClient"
+import { useAuth } from '../../Contexts/authContexts'
+import { v4 as uuidv4 } from 'uuid'
 import "./CreateList.css";
 import { Link } from "react-router-dom";
 
@@ -12,6 +14,7 @@ function CreateList() {
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [selectedMovies, setSelectedMovies] = useState([]);
+  const { user } = useAuth();
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -67,14 +70,6 @@ function CreateList() {
     }
 
     try {
-      const {
-        data: { session },
-        error: sessionError
-      } = await supabase.auth.getSession();
-
-      if (sessionError) throw sessionError;
-
-      const user = session?.user;
 
       if (!user) {
         alert("You must be logged in to save a list.");
@@ -85,14 +80,14 @@ function CreateList() {
         {
           list_title: listName,
           user_id: user.id,
-          list_id: Math.floor(Math.random() * 1000000),
+          list_id: uuidv4(),
           movie_ids: selectedMovies.map((movie) => movie.id),
         },
       ]);
 
       if (error) {
         console.error("Error saving list:", error);
-        alert("Failed to save the list. Please try again.");
+        alert(`An unexpected error occurred: ${error.message}`);
       } else {
         alert("List saved successfully!");
         setListName("");
