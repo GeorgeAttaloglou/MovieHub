@@ -39,7 +39,7 @@ function Log() {
   return (
     <>
       <div className="log-container">
-        <h1>Search Your Movie Log</h1>
+        <h1>Log your most recent watch!</h1>
 
         <div className="log-search">
           <input

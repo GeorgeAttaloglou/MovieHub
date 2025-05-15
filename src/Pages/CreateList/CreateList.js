@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../../supabaseClient"
-import { useAuth } from '../../Contexts/authContexts'
-import { v4 as uuidv4 } from 'uuid'
 import "./CreateList.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Contexts/authContexts";
