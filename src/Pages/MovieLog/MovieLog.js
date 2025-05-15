@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { supabase } from "../../supabaseClient"
+import { useAuth } from '../../Contexts/authContexts'
+import { v4 as uuidv4 } from 'uuid'
 import SimilarMoviesCarousel from "../../Components/SimilarMovies/SimilarMovies";
 import "./MovieLog.css";
 
@@ -13,6 +15,8 @@ function MovieLog() {
   const [rating, setRating] = useState(0);
   const [hovered, setHovered] = useState(0);
   const [review, setReview] = useState("");
+  const { user } = useAuth();
+  
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -37,15 +41,6 @@ function MovieLog() {
     }
 
     try {
-      const {
-        data: { session },
-        error: sessionError
-      } = await supabase.auth.getSession();
-
-      if (sessionError) throw sessionError;
-
-      const user = session?.user;
-
       if (!user) {
         alert("You need to be logged in to log a movie.");
         return;
@@ -53,7 +48,7 @@ function MovieLog() {
 
       const { error } = await supabase.from("logs").insert([
         {
-          log_id: Math.floor(Math.random() * 1000000),
+          id: uuidv4(),
           user_id: user.id,
           review: review,
           movie_id: id,
@@ -62,8 +57,8 @@ function MovieLog() {
       ]);
 
       if (error) {
-        console.error("Error logging movie:", error);
-        alert("Failed to log movie. Please try again.");
+        console.error("Unexpected error:", error);
+      alert(`An unexpected error occurred: ${error.message}`);
       } else {
         alert("Movie logged successfully!");
       }

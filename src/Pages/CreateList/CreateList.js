@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { supabase } from "../../supabaseClient";
+import { supabase } from "../../supabaseClient"
+import { useAuth } from '../../Contexts/authContexts'
+import { v4 as uuidv4 } from 'uuid'
 import "./CreateList.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Contexts/authContexts";
@@ -67,14 +69,6 @@ function CreateList() {
     }
 
     try {
-      const {
-        data: { session },
-        error: sessionError
-      } = await supabase.auth.getSession();
-
-      if (sessionError) throw sessionError;
-
-      const user = session?.user;
 
       if (!user) {
         alert("You must be logged in to save a list.");
@@ -92,7 +86,7 @@ function CreateList() {
 
       if (error) {
         console.error("Error saving list:", error);
-        alert(`Failed to save the list:\n${error.message}\nDetails: ${error.details || "No additional info."}`);
+        alert(`An unexpected error occurred: ${error.message}`);
       } else {
         alert("List saved successfully!");
         setListName("");
