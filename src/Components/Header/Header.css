@@ -42,19 +42,40 @@
 
 
 /* Small Screen Navbar - Center Navbar Links */
-@media (max-width: 991px) { 
-  .navbar-collapse {
-    text-align: center;
+/* Prevent icons from overlapping center brand on mobile */
+@media (max-width: 480px) {
+  .custom-navbar .container {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .navbar-nav {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+  .mobile-brand {
+    font-size: 1.2rem;
+    margin: 0 6px;
+    white-space: nowrap;
+  }
+
+  .navbar-icons {
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .btn-gradient {
+    font-size: 0.75rem;
+    padding: 5px 8px;
+  }
+
+  .user-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .navbar-toggler {
+    padding: 4px 8px;
   }
 }
+
 
 /* global or page-level CSS */
 body, .main-content {
