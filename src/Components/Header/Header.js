@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../Contexts/authContexts";
 import "./Header.css";
 
 const Header = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 991);
+  const { user, logout } = useAuth(); // ✅ get user + logout function
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -13,6 +17,11 @@ const Header = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const handleLogout = async () => {
+    await logout();         // log out using Supabase
+    navigate("/login");     // redirect to login page
+  };
 
   return (
     <>
@@ -34,20 +43,23 @@ const Header = () => {
 
             {/* Icons & Buttons on the Right */}
             <div className="navbar-icons">
-              <Link to="/profile">
-                <img src="pictures/profileicon.png" alt="User" className="user-icon" />
-              </Link>
-
-              <Link to="/log">
-                <button className="btn btn-gradient">LOG</button>
-              </Link>
-
-              {/* FIX THIS !!! */}
-              <Link to="/login">
-                <button className="btn btn-gradient">Login</button>
-              </Link>
-              
+              {user ? (
+                <>
+                  <Link to="/profile">
+                    <img src="pictures/profileicon.png" alt="User" className="user-icon" />
+                  </Link>
+                  <Link to="/log">
+                    <button className="btn btn-gradient">LOG</button>
+                  </Link>
+                  <button className="btn btn-gradient" onClick={handleLogout}>Logout</button>
+                </>
+              ) : (
+                <Link to="/login">
+                  <button className="btn btn-gradient">Login</button>
+                </Link>
+              )}
             </div>
+
           </Container>
         </Navbar>
       )}
@@ -55,30 +67,37 @@ const Header = () => {
       {/* Navbar for Small Screens (Unchanged) */}
       {isMobile && (
         <Navbar bg="dark" variant="dark" expand="lg" className="custom-navbar">
-          <Container className="d-flex justify-content-between align-items-center position-relative">
-            {/* Hamburger Menu on the Left */}
-            <Navbar.Toggle aria-controls="small-navbar-nav" className="me-2" />
+          <Container className="d-flex justify-content-between align-items-center">
 
-            {/* Brand Name Always Centered & Static */}
-            <div className="position-absolute start-50 translate-middle-x">
-              <Navbar.Brand as={Link} to="/" className="fw-bold text-purple">
-                MovieHub
-              </Navbar.Brand>
-            </div>
+            {/* Hamburger menu */}
+            <Navbar.Toggle aria-controls="small-navbar-nav" />
 
-            {/* Icons & Buttons on the Right */}
-            <div className="navbar-icons ms-auto">
-              <Link to="/profile">
-              <img src="pictures/profileicon.png" alt="User" className="user-icon" />
-              </Link>
-              
-              <Link to="/log">
-                <button className="btn btn-gradient">LOG</button>
-              </Link>
+            {/* Logo - slightly smaller */}
+            <Navbar.Brand as={Link} to="/" className="fw-bold text-purple mobile-brand">
+              MovieHub
+            </Navbar.Brand>
+
+            {/* Icons/buttons aligned right */}
+            <div className="navbar-icons">
+              {user ? (
+                <>
+                  <Link to="/profile">
+                    <img src="pictures/profileicon.png" alt="User" className="user-icon" />
+                  </Link>
+                  <Link to="/log">
+                    <button className="btn btn-gradient">LOG</button>
+                  </Link>
+                  <button className="btn btn-gradient" onClick={handleLogout}>Logout</button>
+                </>
+              ) : (
+                <Link to="/login">
+                  <button className="btn btn-gradient">Login</button>
+                </Link>
+              )}
             </div>
           </Container>
 
-          {/* Collapsible Menu */}
+          {/* Collapsible nav links */}
           <Navbar.Collapse id="small-navbar-nav" className="w-100">
             <Nav className="text-center w-100">
               <Nav.Link as={Link} to="/about">About</Nav.Link>

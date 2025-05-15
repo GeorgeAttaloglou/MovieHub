@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useAuth } from "../../Contexts/authContexts"
+import { useNavigate } from "react-router-dom";
 import './Login.css'
 
 export default function Login() {
@@ -7,13 +8,22 @@ export default function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [isLogin, setIsLogin] = useState(true)
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    const fn = isLogin ? login : signup
-    const { error } = await fn(email, password)
-    if (error) alert(error.message)
-  }
+    e.preventDefault();
+    const fn = isLogin ? login : signup;
+    const { error, data } = await fn(email, password);
+  
+    if (error) {
+      alert(error.message);
+    } else if (data?.session) {
+      navigate("/");
+    } else {
+      alert("Login failed: no active session.");
+    }
+  };
+  
 
   return (
     <form onSubmit={handleSubmit} className="login-form">
