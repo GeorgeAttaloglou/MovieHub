@@ -1,23 +1,30 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { supabase } from "../../supabaseClient"
 import { useAuth } from '../../Contexts/authContexts'
 import { v4 as uuidv4 } from 'uuid'
+
 import SimilarMoviesCarousel from "../../Components/SimilarMovies/SimilarMovies";
+
 import "./MovieLog.css";
 
+// Σταθερές για το API
 const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 const IMG_URL = "https://image.tmdb.org/t/p/w300";
 
 function MovieLog() {
+  // Παίρνουμε το ID της ταινίας από το URL
   const { id } = useParams();
+
+  // Δηλώνουμε τα states για την ταινία, αξιολόγηση, hover effect, κριτική
   const [movie, setMovie] = useState(null);
   const [rating, setRating] = useState(0);
   const [hovered, setHovered] = useState(0);
   const [review, setReview] = useState("");
-  const { user } = useAuth();
-  
 
+  const { user } = useAuth();
+
+  // Φέρνουμε τα στοιχεία της ταινίας με βάση το ID
   useEffect(() => {
     const fetchMovie = async () => {
       try {
@@ -34,6 +41,7 @@ function MovieLog() {
     fetchMovie();
   }, [id]);
 
+  // Συνάρτηση για την καταγραφή ταινίας στο Supabase
   const handleLog = async () => {
     if (!rating) {
       alert("Please select a rating.");
@@ -59,7 +67,7 @@ function MovieLog() {
 
       if (error) {
         console.error("Unexpected error:", error);
-      alert(`An unexpected error occurred: ${error.message}`);
+        alert(`An unexpected error occurred: ${error.message}`);
       } else {
         alert("Movie logged successfully!");
       }
@@ -69,13 +77,14 @@ function MovieLog() {
     }
   }
 
-
   if (!movie) return <p>Loading...</p>;
 
   return (
     <>
+      {/* Κεντρικό section για log ταινίας */}
       <div className="log-movie-container">
         <div className="log-header">
+          {/* Αφίσα ταινίας */}
           <img
             src={
               movie.poster_path
@@ -85,6 +94,7 @@ function MovieLog() {
             alt={movie.title}
           />
 
+          {/* Κριτική χρήστη */}
           <div className="log-info">
             <h2>Logging: {movie.title}</h2>
             <label>Review <span>(optional)</span></label>
@@ -96,6 +106,7 @@ function MovieLog() {
           </div>
         </div>
 
+        {/* Αξιολόγηση ταινίας */}
         <div className="log-rating">
           <p>Rate this movie:</p>
           <div className="stars">
@@ -115,11 +126,13 @@ function MovieLog() {
           </div>
         </div>
 
+        {/* Κουμπί υποβολής */}
         <button className="log-button" onClick={handleLog}>
           LOG
         </button>
       </div>
 
+      {/* Εμφάνιση carousel με παρόμοιες ταινίες */}
       <SimilarMoviesCarousel movieId={id} />
     </>
   );

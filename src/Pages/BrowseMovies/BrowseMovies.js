@@ -1,10 +1,14 @@
-import React, { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import "./BrowseMovies.css";
 
+// --- Σταθερές ---
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 
+// --- Κύριο Component ---
 const BrowseMovies = () => {
+
+  // --- States ---
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [genre, setGenre] = useState("");
@@ -13,6 +17,8 @@ const BrowseMovies = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  // --- Συνάρτηση για λήψη ταινιών από το API ---
+  // Φιλτράρει τα αποτελέσματα με βάση τα φίλτρα που έχει επιλέξει ο χρήστης
   const fetchMovies = useCallback(async () => {
     setIsLoading(true);
 
@@ -40,10 +46,12 @@ const BrowseMovies = () => {
     }
   }, [searchQuery, genre, year, rating]);
 
+  // --- Εφέ για φόρτωση ταινιών όταν αλλάζουν τα φίλτρα ή το query ---
   useEffect(() => {
-    fetchMovies(); // Load popular or filtered
+    fetchMovies();
   }, [fetchMovies]);
 
+  // --- Εφέ για αυτόματες προτάσεις αναζήτησης (autocomplete) ---
   useEffect(() => {
     const fetchSearchResults = async () => {
       if (!searchQuery.trim()) {
@@ -62,10 +70,11 @@ const BrowseMovies = () => {
       }
     };
 
-    const timeout = setTimeout(fetchSearchResults, 300);
-    return () => clearTimeout(timeout); // debounce
+    const timeout = setTimeout(fetchSearchResults, 300); // debounce
+    return () => clearTimeout(timeout);
   }, [searchQuery]);
 
+  // --- Υποβολή φόρμας αναζήτησης ---
   const handleSearch = (e) => {
     e.preventDefault();
     fetchMovies();
@@ -74,6 +83,8 @@ const BrowseMovies = () => {
   return (
     <div className="browse-container">
       <h1 className="browse-title">Browse Movies</h1>
+
+      {/* Φίλτρα αναζήτησης */}
       <form onSubmit={handleSearch} className="filters">
         <input
           type="text"
@@ -114,6 +125,7 @@ const BrowseMovies = () => {
         <button type="submit">Search</button>
       </form>
 
+      {/* Προτάσεις αναζήτησης */}
       {searchResults.length > 0 && (
         <ul className="browse-search-result">
           {searchResults.map((movie) => (
@@ -131,6 +143,7 @@ const BrowseMovies = () => {
         </ul>
       )}
 
+      {/* Εμφάνιση ταινιών */}
       {isLoading ? (
         <p>Loading...</p>
       ) : (

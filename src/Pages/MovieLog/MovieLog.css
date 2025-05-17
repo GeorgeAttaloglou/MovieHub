@@ -1,97 +1,107 @@
+/* Κοντέινερ για το log ταινίας */
 .log-movie-container {
-    max-width: 1000px;
-    margin: 40px auto;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    font-family: Arial, sans-serif;
-    color: white;
-  }
-  
-  .log-header {
-    display: flex;
-    gap: 30px;
-    align-items: flex-start;
-    margin-bottom: 20px;
-  }
-  
-  .log-header img {
-    width: 180px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  }
-  
-  .log-info h2 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-    color: #fff;
-  }
-  
-  .log-info label {
-    font-weight: bold;
-    color: #ccc;
-  }
-  
-  .log-info span {
-    font-weight: normal;
-    font-size: 0.9rem;
-    color: #777;
-    margin-left: 6px;
-  }
-  
-  .log-info textarea {
-    width: 100%;
-    height: 100px;
-    margin-top: 8px;
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 6px;
-    border: none;
-    background: #bbb;
-    color: black;
-    resize: vertical;
-  }
-  
-  .log-rating {
-    margin-top: 30px;
-  }
-  
-  .log-rating p {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #a855f7;
-    margin-bottom: 10px;
-  }
-  
-  .stars {
-    font-size: 2rem;
-  }
-  
-  .star {
-    cursor: pointer;
-    color: #666;
-    transition: 0.2s;
-  }
-  
-  .star.active {
-    color: #f4c10f;
-  }
-  
-  .log-button {
-    margin-top: 30px;
-    padding: 12px 24px;
-    background: linear-gradient(45deg, #a855f7, #ff7eb3);
-    color: white;
-    font-weight: bold;
-    font-size: 1rem;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: 0.3s ease;
-  }
-  
-  .log-button:hover {
-    background: linear-gradient(45deg, #ff7eb3, #a855f7);
-  }
-  
+  max-width: 1000px;
+  margin: 40px auto;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+/* Επικεφαλίδα log - */
+.log-header {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+/* Εικόνα ταινίας */
+.log-header img {
+  width: 180px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* Περιοχή αξιολόγησης */
+.log-info h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+
+.log-info label {
+  font-weight: bold;
+  color: #ccc;
+}
+
+
+.log-info span {
+  font-weight: normal;
+  font-size: 0.9rem;
+  color: #777;
+  margin-left: 6px;
+}
+
+
+.log-info textarea {
+  width: 100%;
+  height: 100px;
+  margin-top: 8px;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  background: #bbb;
+  color: black;
+  resize: vertical;
+}
+
+
+.log-rating {
+  margin-top: 30px;
+}
+
+/* Τίτλος αξιολόγησης */
+.log-rating p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #a855f7;
+  margin-bottom: 10px;
+}
+
+/* Αστέρια αξιολόγησης */
+.stars {
+  font-size: 2rem;
+}
+
+.star {
+  cursor: pointer;
+  color: #666;
+  transition: 0.2s;
+}
+
+.star.active {
+  color: #f4c10f;
+}
+
+/* Κουμπί καταχώρησης*/
+.log-button {
+  margin-top: 30px;
+  padding: 12px 24px;
+  background: linear-gradient(45deg, #a855f7, #ff7eb3);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  transition: 0.3s ease;
+}
+
+/* Εφέ hover στο κουμπί*/
+.log-button:hover {
+  background: linear-gradient(45deg, #ff7eb3, #a855f7);
+}

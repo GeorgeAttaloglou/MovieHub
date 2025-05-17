@@ -1,21 +1,14 @@
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
-
+/* Κεντρικό container για το browsing */
 .browse-container {
   max-width: calc(100% - 80px);
   margin: 50px 40px;
   text-align: center;
-  font-family: Arial, sans-serif;
   padding: 40px;
   border-radius: 12px;
   background: rgba(0, 0, 0, 0.8);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-  box-sizing: border-box; /* ✅ Add this */
 }
 
+/* Τίτλος browsing */
 .browse-title {
   font-size: 2.5rem;
   font-weight: bold;
@@ -23,8 +16,7 @@ body, html {
   color: #ff7eb3;
 }
 
-
-/* Absolute dropdown below input */
+/* Αποτελέσματα αναζήτησης (dropdown κάτω από input) */
 .browse-search-result {
   display: block;
   background: #222;
@@ -46,12 +38,13 @@ body, html {
   background: #333;
 }
 
+/* Φίλτρα αναζήτησης */
 .filters {
   position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
   justify-content: center;
 }
 
@@ -76,7 +69,6 @@ body, html {
 
 .filters button {
   color: #000;
-  cursor: pointer;
   font-weight: bold;
   transition: background-color 0.3s ease;
 }
@@ -85,6 +77,7 @@ body, html {
   background-color: #b6afaf;
 }
 
+/* Πλέγμα ταινιών */
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
@@ -94,17 +87,15 @@ body, html {
   width: 100%;
 }
 
+/* Κάρτα ταινίας */
 .movie-card {
   display: flex;
   flex-direction: column;
   background-color: #1e1e1e;
   border-radius: 10px;
-  overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease-in-out;
-  height: 100%;
   text-decoration: none;
-  color: inherit;
 }
 
 .movie-card:hover {
@@ -128,9 +119,8 @@ body, html {
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.2;
-  max-height: 3em; /* Limits to 2 lines */
+  max-height: 3em; /* Περιορισμός σε 2 γραμμές */
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .movie-card p {
@@ -138,10 +128,8 @@ body, html {
   color: #ccc;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .movie-card:last-child {
   margin-bottom: 10px;
 }
-

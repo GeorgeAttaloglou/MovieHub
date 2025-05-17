@@ -1,5 +1,4 @@
-/* src/Pages/Profile/Profile.css */
-
+/* Προφίλ container & Διάταξη */
 .profile-container {
   display: flex;
   align-items: center;
@@ -23,6 +22,7 @@
   color: #a855f7;
 }
 
+/* Καρτέλες */
 .tabs-wrapper {
   display: flex;
   padding: 0 10px;
@@ -44,6 +44,7 @@
   background-color: #1a1a1a;
 }
 
+/* Ενότητες Περιεχομένου Προφίλ */
 .profile-bottom-section {
   padding: 0 10px 20px 10px;
 }
@@ -55,6 +56,7 @@
   border-radius: 0 12px 12px 12px;
 }
 
+/* Logs */
 .diary-entry {
   background-color: #292929;
   padding: 16px;
@@ -67,7 +69,7 @@
   color: #888;
 }
 
-/* Enhanced Diary Log UI */
+/* Γραμμές Καταγραφής */
 .log-row {
   display: flex;
   align-items: flex-start;
@@ -97,15 +99,16 @@
 .log-review {
   margin-top: 10px;
   color: #ccc;
-  font-size: 0.95rem;
+  font-size: 16px; 
 }
 
 .log-date {
   margin-top: 6px;
-  font-size: 0.85rem;
+  font-size: 14px;
   color: #888;
 }
 
+/* Αστέρια & Βαθμολογίες */
 .log-stars {
   display: flex;
   align-items: center;
@@ -115,7 +118,7 @@
 }
 
 .star {
-  font-size: 1.3rem;
+  font-size: 20px; 
   color: #444;
 }
 
@@ -124,11 +127,12 @@
 }
 
 .rating-text {
-  font-size: 0.95rem;
+  font-size: 16px; 
   margin-left: 8px;
   color: #ff7eb3;
 }
 
+/* Σύνδεσμοι */
 .log-title-link {
   color: #a855f7;
   text-decoration: none;
@@ -138,7 +142,7 @@
   text-decoration: underline;
 }
 
-
+/* Responsiveness fix */
 @media (max-width: 600px) {
   .rating-stars {
     display: none;

@@ -1,11 +1,11 @@
-// src/Pages/Profile/Profile.js
-
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "../../supabaseClient";
 import { useAuth } from "../../Contexts/authContexts";
 import { Link } from "react-router-dom";
+
 import "./Profile.css";
 
+// Βάση URL για τις αφίσες ταινιών
 const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w200";
 
 function Profile() {
@@ -13,6 +13,7 @@ function Profile() {
   const [logs, setLogs] = useState([]);
   const [movieData, setMovieData] = useState({});
 
+  // Φόρτωση των log εγγραφών του χρήστη και αντίστοιχες αφίσες
   useEffect(() => {
     if (!user) return;
 
@@ -28,7 +29,7 @@ function Profile() {
         alert(`An unexpected error occurred: ${error.message}`);
       } else {
         setLogs(data);
-        fetchMoviePosters(data);
+        fetchMoviePosters(data); // παίρνουμε και τις αφίσες για κάθε log
       }
     };
 
@@ -52,6 +53,7 @@ function Profile() {
     fetchLogs();
   }, [user]);
 
+  // Συνάρτηση που αποδίδει αστεράκια για κάθε log (μέχρι 5)
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating / 2);
     const emptyStars = 5 - fullStars;
@@ -73,6 +75,7 @@ function Profile() {
 
   return (
     <div>
+      {/* Κορυφαίο section με εικόνα και όνομα χρήστη */}
       <div className="profile-container">
         <img src="pictures/profileicon.png" alt="User" className="profile-image" />
         <div className="profile-text">
@@ -80,6 +83,7 @@ function Profile() {
         </div>
       </div>
 
+      {/* Tabs για πλοήγηση σε profile sections */}
       <div className="profile-bottom-section">
         <div className="tabs-wrapper">
           <Link to="/profile" className="tab-button active">My diary</Link>
@@ -87,6 +91,7 @@ function Profile() {
           <Link to="/profilestats" className="tab-button">My stats</Link>
         </div>
 
+        {/* Περιεχόμενο ημερολογίου με logs του χρήστη */}
         <div className="profile-content">
           <div className="diary-entry">
             <h2>Diary Entries</h2>

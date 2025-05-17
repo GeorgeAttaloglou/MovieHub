@@ -1,9 +1,9 @@
-/* styles/Log.css */
-
+/* Στυλ για το κεντρικό container του Log component */
 .log-container {
   max-width: calc(100% - 80px);
   margin: 50px 200px;
   text-align: center;
+  justify-self: center;
   font-family: Arial, sans-serif;
   padding: 30px;
   border-radius: 12px;
@@ -11,14 +11,15 @@
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* Τίτλος της σελίδας */
 .log-container h1 {
-  font-size: 2.5rem;
+  font-size: 40px;
   font-weight: bold;
   margin-bottom: 30px;
   color: #ff7eb3; 
-  
 }
 
+/* Περιέχει την αναζήτηση */
 .log-search {
   display: flex;
   justify-content: center;
@@ -26,37 +27,50 @@
   margin-top: 20px;
 }
 
+/* Input πεδίο αναζήτησης */
 .log-search input[type="text"] {
   padding: 10px;
-  font-size: 1rem;
+  font-size: 16px;
   width: 60%;
   border: 1px solid #ccc;
   border-radius: 6px;
 }
+/* Αποτελέσματα αναζήτησης */
+.log-search-results {
+  margin-top: 20px;
+  background-color: #222;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: left;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-.log-search input[type="submit"] {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #a855f7;
+/* Στυλ για κάθε αποτέλεσμα (γραμμή λίστας) */
+.log-search-results li {
+  list-style: none;
+  padding: 10px;
+  border-bottom: 1px solid #333;
   color: white;
-  border: none;
-  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.2s ease;
 }
 
-.log-search input[type="submit"]:hover {
-  background-color: #ff7eb3;
+/* Hover effect για κάθε αποτέλεσμα */
+.log-search-results li:hover {
+  background: #333;
 }
 
-/* Make search responsive on small screens */
+
+/* Ανταποκρίσιμη σχεδίαση για μικρές οθόνες */
 @media (max-width: 800px) {
   .log-container {
     max-width: 400px;
-    margin: 50px 40px !important;
+    margin: 50px auto; 
     align-self: center;
   }
-  
+
   .log-search {
     flex-wrap: wrap;
   }
@@ -69,28 +83,4 @@
     width: 100%;
     margin-top: 10px;
   }
-}
-
-.log-search-results {
-  margin-top: 20px;
-  background-color: #222;
-  padding: 10px;
-  border-radius: 8px;
-  text-align: left;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.log-search-results li {
-  list-style: none;
-  padding: 10px;
-  border-bottom: 1px solid #333;
-  color: white;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.log-search-results li:hover {
-  background: #333;
 }

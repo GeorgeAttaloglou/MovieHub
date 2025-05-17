@@ -1,22 +1,28 @@
-// src/Pages/ProfileStats/ProfileStats.js
-
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "../../../supabaseClient";
 import { useAuth } from "../../../Contexts/authContexts";
 import { Link } from "react-router-dom";
+
 import "./ProfileStats.css";
 
 function ProfileStats() {
   const { user } = useAuth();
+
+  // Αποθήκευση βασικών στατιστικών
   const [logCount, setLogCount] = useState(0);
   const [listCount, setListCount] = useState(0);
   const [averageRating, setAverageRating] = useState(null);
   const [firstLog, setFirstLog] = useState(null);
   const [latestLog, setLatestLog] = useState(null);
 
+  // Φόρτωση στατιστικών όταν αλλάζει ο χρήστης
   useEffect(() => {
     if (!user) return;
 
+    //ΣΗΜΕΙΩΣΗ: Στο Supabase δεν μπορούμε να πάρουμε ταυτόχρονα `count` και `data`. 
+    // Χρειάζονται ξεχωριστές queries για count-only και full data.
+
+    // Πρώτο fetch: αριθμός logs & λιστών
     const fetchStats = async () => {
       const [{ count: logs }, { count: lists }] = await Promise.all([
         supabase
@@ -33,6 +39,7 @@ function ProfileStats() {
       setListCount(lists || 0);
     };
 
+    // Δεύτερο fetch: μέσος όρος αξιολόγησης, πρώτο και τελευταίο log
     const fetchExtraStats = async () => {
       const { data: ratingsData } = await supabase
         .from("logs")
@@ -67,6 +74,7 @@ function ProfileStats() {
 
   return (
     <div>
+      {/* Εικόνα χρήστη και καλωσόρισμα */}
       <div className="profile-container-stats">
         <img src="pictures/profileicon.png" alt="User" className="profile-image-stats" />
         <div className="profile-text-stats">
@@ -74,6 +82,7 @@ function ProfileStats() {
         </div>
       </div>
 
+      {/* Πλοήγηση tabs προφίλ */}
       <div className="profile-bottom-section-stats">
         <div className="tabs-wrapper-stats">
           <Link to="/profile" className="tab-button-stats">My diary</Link>
@@ -81,6 +90,7 @@ function ProfileStats() {
           <Link to="/profilestats" className="tab-button-stats active">My stats</Link>
         </div>
 
+        {/* Απόδοση στατιστικών κάρτων */}
         <div className="profile-content-stats">
           <div className="stats-grid">
             <div className="stat-card">

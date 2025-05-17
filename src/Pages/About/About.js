@@ -1,21 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom"; // Import Link for navigation
+import { Link } from "react-router-dom";
 import "./About.css";
 
 function About() {
   return (
     <div>
       <div className="about-container">
+
+        { /* Ενότητα Επικεφαλίδας "Σχετικά με εμάς" */}
         <div className="about-us-text-center">
           <h1 className="about-title">
-            <Link to="/about">About Us</Link>
+            About Us
           </h1>
           <p className="about-text">
             MovieHub is a platform that helps you discover new movies and series based on your interests. You can keep track of your favorite movies, mark what you've watched, and rate your favorites.
           </p>
         </div>
 
-        {/* Section 1 - Image Left, Text Right */}
+        {/* Ενότητα 1 - Ανακάλυψε Νέες Ταινίες (Εικόνα Αριστερά, Κείμενο Δεξιά) */}
         <div className="about-section">
           <img src="pictures/movie-watching.jpg" alt="Movie Experience" className="about-image" />
           <div className="about-text-container">
@@ -28,7 +29,7 @@ function About() {
           </div>
         </div>
 
-        {/* Section 2 - Text Left, Image Right */}
+        {/* Ενότητα 2 - Παρακολούθησε τι βλέπεις (Κείμενο Αριστερά, Εικόνα Δεξιά) */}
         <div className="about-section reverse">
           <div className="about-text-container">
             <h2 className="about-title">
@@ -40,8 +41,8 @@ function About() {
           </div>
           <img src="pictures/movie-tracking.jpg" alt="Tracking Movies" className="about-image" />
         </div>
-        
 
+        {/* Ενότητα 3 - Πάροχος API TMDB */}
         <div className="about-section">
           <img src="pictures/tmdb-logo.svg" alt="tmdb-logo" className="about-image" />
           <div className="about-text-container">
@@ -53,7 +54,8 @@ function About() {
             </p>
           </div>
         </div>
-        
+
+        {/* Ενότητα 4 - Πάροχος Βάσης Δεδομένων Supabase */}
         <div className="about-section">
           <img src="pictures/supabase-logo-wordmark--dark.png" alt="supabase-logo" className="about-image" />
           <div className="about-text-container">
@@ -65,6 +67,7 @@ function About() {
             </p>
           </div>
         </div>
+
       </div>
     </div>
   );

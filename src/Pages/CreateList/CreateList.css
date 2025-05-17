@@ -1,138 +1,143 @@
+/*Βασικό container για τη σελίδα δημιουργίας λίστας */
 .create-list-container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 30px;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    border-radius: 12px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .create-list-container h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #ff7eb3; 
-    margin-bottom: 20px;
-  }
-  .create-list-container h2 {
-    margin-bottom: 20px;
-  }
-  
-  .list-name-input {
-    width: 100%;
-    padding: 10px;
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-  }
-  
-  .search-section input {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-  }
-  
-  .search-results {
-    margin: 20px 0;
-  }
-  
-  .search-result {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #222;
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 10px;
-  }
-  
-  .search-result button {
-    background: #a855f7;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 6px 12px;
-    cursor: pointer;
-  }
-  
-  .selected-movies {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 30px;
-  }
-  
-  .selected-movie-card {
-    width: 150px;
-    background: #111;
-    padding: 10px;
-    border-radius: 8px;
-    text-align: center;
-  }
-  
-  .selected-movie-card img {
-    width: 100%;
-    border-radius: 6px;
-  }
-  
-  .selected-movie-card button {
-    margin-top: 10px;
-    background: #ff4d4f;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  .save-button {
-    padding: 12px 24px;
-    font-size: 1rem;
-    background-color: #a855f7;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 12px;
+}
 
-  .save-button:hover {
-    background-color: #ff7eb3;
-  }
-  
-  .no-results {
-    text-align: center;
-    color: #aaa;
-    font-style: italic;
-    margin-top: 10px;
-  }
-  
-  .search-title-link,
+/*Τίτλοι (h1, h2) */
+.create-list-container h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ff7eb3; 
+  margin-bottom: 20px;
+}
+.create-list-container h2 {
+  margin-bottom: 20px;
+}
+
+/*Εισαγωγή ονόματος λίστας */
+.list-name-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/*Περιοχή αναζήτησης */
+.search-section input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/*Αποτελέσματα αναζήτησης */
+.search-results {
+  margin: 20px 0;
+}
+
+.search-result {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #222;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.search-result button {
+  background: #a855f7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+}
+
+/*  Επιλεγμένες ταινίες */
+.selected-movies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.selected-movie-card {
+  width: 150px;
+  background: #111;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.selected-movie-card img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.selected-movie-card button {
+  margin-top: 10px;
+  background: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+
+/*  Κουμπί αποθήκευσης */
+.save-button {
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #a855f7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #ff7eb3;
+}
+
+/*  Μήνυμα χωρίς αποτελέσματα */
+.no-results {
+  text-align: center;
+  color: #aaa;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+/*  Σύνδεσμοι τίτλων αναζήτησης και επιλεγμένων */
+.search-title-link,
 .selected-link {
   text-decoration: none;
   color: inherit;
-  display: inline-block;
 }
 
 .selected-link:hover {
   text-decoration: underline;
 }
 
+/*  Blocker overlay και modal */
 .create-list-blocker {
   position: fixed;
-  top: 70px; /* allow navbar to show */
+  top: 70px; 
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.75); /* transparent black overlay */
+  background: rgba(0, 0, 0, 0.75); 
   z-index: 999;
   display: flex;
   justify-content: center;
   align-items: center;
-  pointer-events: all;
+ 
 }
 
 .blocker-modal {
@@ -156,9 +161,9 @@
   color: white;
   font-weight: bold;
   border-radius: 6px;
-  cursor: pointer;
 }
 
 .blocker-modal button:hover {
   background: #ff7eb3;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }

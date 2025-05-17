@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "../../supabaseClient"
-import "./CreateList.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Contexts/authContexts";
 import { v4 as uuidv4 } from 'uuid'
 
+import "./CreateList.css";
+
 const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w200";
 
+
 function CreateList() {
+
+  // Κατάσταση (state) για το όνομα της λίστας, το search, τα αποτελέσματα και τις επιλεγμένες ταινίες
   const [listName, setListName] = useState("");
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -16,7 +20,10 @@ function CreateList() {
   const { user } = useAuth();
   const navigate = useNavigate();
 
+  // useEffect για αναζήτηση ταινιών όταν αλλάζει το search ή οι επιλεγμένες ταινίες
   useEffect(() => {
+  
+    // Συνάρτηση για fetch ταινιών από το TMDB API
     const fetchMovies = async () => {
       if (!search) {
         setSearchResults([]);
@@ -30,6 +37,8 @@ function CreateList() {
         const data = await res.json();
 
         if (data.results) {
+
+          // Φιλτράρισμα για να μην εμφανίζονται ήδη επιλεγμένες ταινίες και να έχουν poster
           const filtered = data.results
             .filter(
               (movie) =>
@@ -47,14 +56,17 @@ function CreateList() {
     fetchMovies();
   }, [search, selectedMovies]);
 
+  // Προσθήκη ταινίας στη λίστα επιλεγμένων
   const addMovie = (movie) => {
     setSelectedMovies((prev) => [...prev, movie]);
   };
 
+  // Αφαίρεση ταινίας από τη λίστα επιλεγμένων
   const removeMovie = (id) => {
     setSelectedMovies((prev) => prev.filter((movie) => movie.id !== id));
   };
 
+  // Αποθήκευση λίστας στη βάση δεδομένων μέσω Supabase
   const handleSaveList = async () => {
     if (!listName.trim()) {
       alert("Please enter a list name.");
@@ -99,7 +111,8 @@ function CreateList() {
 
   return (
     <div className="create-list-container">
-      {/* Modal blocker */}
+  
+      {/*Modal blocker αν δεν είναι συνδεδεμένος ο χρήστης */}
       {!user && (
         <div className="create-list-blocker">
           <div className="blocker-modal">
@@ -109,8 +122,8 @@ function CreateList() {
         </div>
       )}
 
+      {/*Εισαγωγή ονόματος λίστας */}
       <h1>Create a New Movie List</h1>
-
       <input
         className="list-name-input"
         type="text"
@@ -120,6 +133,7 @@ function CreateList() {
         disabled={!user}
       />
 
+      {/*Αναζήτηση ταινίας */}
       <div className="search-section">
         <input
           type="text"
@@ -130,6 +144,7 @@ function CreateList() {
         />
       </div>
 
+      {/*Εμφάνιση αποτελεσμάτων αναζήτησης */}  
       <div className="search-results">
         {searchResults.length > 0 ? (
           searchResults.map((movie) => (
@@ -147,6 +162,7 @@ function CreateList() {
         )}
       </div>
 
+      {/*Εμφάνιση επιλεγμένων ταινιών */}
       <h2>Movies in This List</h2>
       <div className="selected-movies">
         {selectedMovies.map((movie) => (
@@ -165,6 +181,7 @@ function CreateList() {
         ))}
       </div>
 
+      {/*Κουμπί αποθήκευσης λίστας */}
       <button className="save-button" onClick={handleSaveList} disabled={!user}>
         Save List
       </button>
