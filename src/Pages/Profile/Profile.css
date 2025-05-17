@@ -1,4 +1,4 @@
-/* Προφίλ container & Διάταξη */
+/* Profile container & Layout */
 .profile-container {
   display: flex;
   align-items: center;
@@ -22,7 +22,7 @@
   color: #a855f7;
 }
 
-/* Καρτέλες */
+/* Tabs */
 .tabs-wrapper {
   display: flex;
   padding: 0 10px;
@@ -44,7 +44,7 @@
   background-color: #1a1a1a;
 }
 
-/* Ενότητες Περιεχομένου Προφίλ */
+/* Profile Content Sections */
 .profile-bottom-section {
   padding: 0 10px 20px 10px;
 }
@@ -69,7 +69,7 @@
   color: #888;
 }
 
-/* Γραμμές Καταγραφής */
+/* Log Rows */
 .log-row {
   display: flex;
   align-items: flex-start;
@@ -108,7 +108,7 @@
   color: #888;
 }
 
-/* Αστέρια & Βαθμολογίες */
+/* Stars & Ratings */
 .log-stars {
   display: flex;
   align-items: center;
@@ -132,7 +132,7 @@
   color: #ff7eb3;
 }
 
-/* Σύνδεσμοι */
+/* Links */
 .log-title-link {
   color: #a855f7;
   text-decoration: none;

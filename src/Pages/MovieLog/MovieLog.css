@@ -1,4 +1,4 @@
-/* Κοντέινερ για το log ταινίας */
+/* Container for the movie log */
 .log-movie-container {
   max-width: 1000px;
   margin: 40px auto;
@@ -10,7 +10,7 @@
   color: white;
 }
 
-/* Επικεφαλίδα log - */
+/* Log header */
 .log-header {
   display: flex;
   gap: 30px;
@@ -18,26 +18,24 @@
   margin-bottom: 20px;
 }
 
-/* Εικόνα ταινίας */
+/* Movie image */
 .log-header img {
   width: 180px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
 
-/* Περιοχή αξιολόγησης */
+/* Rating area */
 .log-info h2 {
   font-size: 2rem;
   margin-bottom: 10px;
   color: #fff;
 }
 
-
 .log-info label {
   font-weight: bold;
   color: #ccc;
 }
-
 
 .log-info span {
   font-weight: normal;
@@ -45,7 +43,6 @@
   color: #777;
   margin-left: 6px;
 }
-
 
 .log-info textarea {
   width: 100%;
@@ -60,12 +57,11 @@
   resize: vertical;
 }
 
-
 .log-rating {
   margin-top: 30px;
 }
 
-/* Τίτλος αξιολόγησης */
+/* Rating title */
 .log-rating p {
   font-size: 1.2rem;
   font-weight: bold;
@@ -73,7 +69,7 @@
   margin-bottom: 10px;
 }
 
-/* Αστέρια αξιολόγησης */
+/* Rating stars */
 .stars {
   font-size: 2rem;
 }
@@ -88,7 +84,7 @@
   color: #f4c10f;
 }
 
-/* Κουμπί καταχώρησης*/
+/* Submit button */
 .log-button {
   margin-top: 30px;
   padding: 12px 24px;
@@ -101,7 +97,6 @@
   transition: 0.3s ease;
 }
 
-/* Εφέ hover στο κουμπί*/
 .log-button:hover {
   background: linear-gradient(45deg, #ff7eb3, #a855f7);
 }

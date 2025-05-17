@@ -6,7 +6,7 @@ function About() {
     <div>
       <div className="about-container">
 
-        { /* Ενότητα Επικεφαλίδας "Σχετικά με εμάς" */}
+        { /* Header section "About Us" */ }
         <div className="about-us-text-center">
           <h1 className="about-title">
             About Us
@@ -16,7 +16,7 @@ function About() {
           </p>
         </div>
 
-        {/* Ενότητα 1 - Ανακάλυψε Νέες Ταινίες (Εικόνα Αριστερά, Κείμενο Δεξιά) */}
+        {/* Section 1 - Discover New Movies (Image Left, Text Right) */}
         <div className="about-section">
           <img src="pictures/movie-watching.jpg" alt="Movie Experience" className="about-image" />
           <div className="about-text-container">
@@ -29,7 +29,7 @@ function About() {
           </div>
         </div>
 
-        {/* Ενότητα 2 - Παρακολούθησε τι βλέπεις (Κείμενο Αριστερά, Εικόνα Δεξιά) */}
+        {/* Section 2 - Track What You Watch (Text Left, Image Right) */}
         <div className="about-section reverse">
           <div className="about-text-container">
             <h2 className="about-title">
@@ -42,7 +42,7 @@ function About() {
           <img src="pictures/movie-tracking.jpg" alt="Tracking Movies" className="about-image" />
         </div>
 
-        {/* Ενότητα 3 - Πάροχος API TMDB */}
+        {/* Section 3 - TMDB API Provider */}
         <div className="about-section">
           <img src="pictures/tmdb-logo.svg" alt="tmdb-logo" className="about-image" />
           <div className="about-text-container">
@@ -55,15 +55,15 @@ function About() {
           </div>
         </div>
 
-        {/* Ενότητα 4 - Πάροχος Βάσης Δεδομένων Supabase */}
+        {/* Section 4 - Supabase Database Provider */}
         <div className="about-section">
           <img src="pictures/supabase-logo-wordmark--dark.png" alt="supabase-logo" className="about-image" />
           <div className="about-text-container">
             <h2 className="about-title">
-              <Link to="https://supabase.com/">Our databse provider</Link>
+              <Link to="https://supabase.com/">Our database provider</Link>
             </h2>
             <p className="about-text">
-              MovieHub uses supabase for its databse needs but is not endorsed or certified but supabase.
+              MovieHub uses supabase for its database needs but is not endorsed or certified by supabase.
             </p>
           </div>
         </div>

@@ -1,4 +1,4 @@
-/*Κοντέινερ Προφί*/
+/*Profile Container*/
 .profile-container-stats {
   display: flex;
   align-items: center;
@@ -10,7 +10,7 @@
   border-radius: 16px;
 }
 
-/*Εικόνα Προφίλ*/
+/*Profile Image*/
 .profile-image-stats {
   width: 140px;
   height: 140px;
@@ -18,13 +18,13 @@
   margin-right: 20px;
 }
 
-/*Κείμενο Προφίλ*/
+/*Profile Text*/
 .profile-text-stats {
   flex: 2;
   color: #a855f7;
 }
 
-/*Tabs (Καρτέλες)*/
+/*Tabs*/
 .tabs-wrapper-stats {
   display: flex;
   padding: 0 10px;
@@ -43,17 +43,17 @@
   text-decoration: none;
 }
 
-/* Ενεργή καρτέλα */
+/* Active tab */
 .tab-button-stats.active {
   background-color: #1a1a1a;
 }
 
-/*Κάτω Τμήμα Προφίλ*/
+/*Profile Bottom Section*/
 .profile-bottom-section-stats {
   padding: 0 10px 20px 10px;
 }
 
-/* Περιεχόμενο κάτω από τα tabs */
+/* Content below the tabs */
 .profile-content-stats {
   background-color: #1a1a1a;
   padding: 20px 10px;
@@ -61,7 +61,7 @@
   border-radius: 0 12px 12px 12px;
 }
 
-/*Κάρτες Στατιστικών*/
+/*Stats Cards*/
 .stats-grid {
   display: flex;
   flex-wrap: wrap;
@@ -74,28 +74,28 @@
   background-color: #2a2a2a;
   border-radius: 12px;
   padding: 30px 20px;
-  flex: 1 1 calc(50% - 20px); /* 2 ανά σειρά */
+  flex: 1 1 calc(50% - 20px); /* 2 per row */
   max-width: calc(50% - 20px);
   color: #ff7eb3;
   text-align: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
-/* Τίτλος κάρτας στατιστικών */
+/* Stats card title */
 .stat-card h3 {
   font-size: 20px; 
   margin-bottom: 10px;
   color: #a855f7;
 }
 
-/* Αριθμός στατιστικού */
+/* Stat number */
 .stat-number {
   font-size: 40px;
   font-weight: bold;
   color: white;
 }
 
-/* Responsive: Μία κάρτα ανά σειρά σε μικρές οθόνες */
+/* Responsive: One card per row on small screens */
 @media (max-width: 768px) {
   .stat-card {
    flex: 1 1 100%;

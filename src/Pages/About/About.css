@@ -1,4 +1,4 @@
-/* Βασικά στυλ επαναφοράς και φόντου για το body και το html*/
+/* Basic reset styles and background for body and html */
 body, html {
   margin: 0;
   padding: 0;
@@ -7,14 +7,14 @@ body, html {
   color: aliceblue;
 }
 
-/* Κύριο container της σελίδας About */
+/* Main container for the About page */
 .about-container {
   max-width: 1200px;
   margin: 50px auto;
   padding: 50px 20px;
 }
 
-/*Κεντραρισμένο μπλοκ κειμένου με φόντο και σκιά */
+/* Centered text block with background and shadow */
 .about-us-text-center {
   text-align: center;
   gap: 30px;
@@ -24,8 +24,7 @@ body, html {
   background: rgba(0, 0, 0, 0.8);
 }
 
-/* Ενότητα με flexbox για εικόνα και κείμενο */
-/* Ορίζει διάταξη, αποστάσεις, φόντο και σκιά */
+/* Section with flexbox for image and text */
 .about-section {
   display: flex;
   align-items: center;
@@ -38,7 +37,7 @@ body, html {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/*  Στυλ για τις εικόνες της ενότητας About*/
+/* Styles for the images in the About section */
 .about-image {
   width: 45%;
   height: auto;
@@ -47,12 +46,12 @@ body, html {
   border-radius: 10px;
 }
 
-/*  Container για το κείμενο της ενότητας About*/
+/* Container for the text in the About section */
 .about-text-container {
   width: 50%;
 }
 
-/*  Στυλ για τους συνδέσμους στον τίτλο*/
+/* Styles for links in the title */
 .about-title a {
   text-decoration: none;
   font-size: 2.5rem;
@@ -69,19 +68,19 @@ body, html {
   color: #9333ea;
 }
 
-/*  Στυλ για τον τίτλο της ενότητας*/
+/* Styles for the section title */
 .about-title {
   margin-bottom: 20px;
   color: #a855f7;
 }
 
-/*  Στυλ για το κείμενο της ενότητας*/
+/* Styles for the section text */
 .about-text {
   font-size: 1.5rem;
   line-height: 1.6;
 }
 
-/*  Responsive προσαρμογές για μικρότερες οθόνες*/
+/* Responsive adjustments for smaller screens */
 @media (max-width: 900px) {
   .about-section {
       flex-direction: column;

@@ -4,51 +4,51 @@ import { useNavigate } from "react-router-dom";
 import './Login.css'
 
 export default function Login() {
-  // Παίρνουμε τις login/signup συναρτήσεις από το authentication context
+  // Get the login/signup functions from the authentication context
   const { login, signup } = useAuth()
 
-  // Κρατάμε σε state τα στοιχεία του χρήστη και το αν είναι σε login ή signup mode
+  // Keep user credentials and login/signup mode in state
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [isLogin, setIsLogin] = useState(true)
 
   const navigate = useNavigate(); 
 
-  // Όταν γίνεται submit η φόρμα (είτε για login είτε για signup)
+  // When the form is submitted (either for login or signup)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Επιλογή λειτουργίας login ή signup
+    // Choose login or signup function
     const fn = isLogin ? login : signup;
     const { error, data } = await fn(email, password);
   
-    // Αν υπήρξε σφάλμα, το εμφανίζουμε
+    // If there was an error, show it
     if (error) {
       alert(error.message);
     } 
-    // Αν όλα πήγαν καλά και υπάρχει ενεργή session, πηγαίνουμε στην αρχική σελίδα
+    // If everything went well and there is an active session, go to the home page
     else if (data?.session) {
       navigate("/");
     } 
-    // Αλλιώς εμφανίζουμε γενικό σφάλμα
+    // Otherwise show a generic error
     else {
       alert("Login failed: no active session.");
     }
   };
 
   return (
-    // Η φόρμα σύνδεσης/εγγραφής
+    // The login/signup form
     <form onSubmit={handleSubmit} className="login-form">
       <h2>{isLogin ? "Login" : "Sign Up"}</h2>
 
-      {/* Input για email */}
+      {/* Input for email */}
       <input 
         placeholder="Email" 
         value={email} 
         onChange={e => setEmail(e.target.value)} 
       />
 
-      {/* Input για κωδικό */}
+      {/* Input for password */}
       <input 
         type="password" 
         placeholder="Password" 
@@ -56,10 +56,10 @@ export default function Login() {
         onChange={e => setPassword(e.target.value)} 
       />
 
-      {/* Κουμπί υποβολής (Login ή Sign Up) */}
+      {/* Submit button (Login or Sign Up) */}
       <button type="submit">{isLogin ? "Login" : "Sign Up"}</button>
 
-      {/* Εναλλαγή μεταξύ login και signup */}
+      {/* Toggle between login and signup */}
       <p onClick={() => setIsLogin(!isLogin)}>
         {isLogin ? "Need to sign up?" : "Already have an account?"}
       </p>

@@ -1,4 +1,4 @@
-/*Ενοτητα για το προφιλ*/
+/*Section for the profile*/
 .profile-container-lists {
   display: flex;
   align-items: center;
@@ -22,7 +22,7 @@
   color: #a855f7;
 }
 
-/*Ενοτητα για τα tabs*/
+/*Section for the tabs*/
 .tabs-wrapper-lists {
   display: flex;
   padding: 0 10px;
@@ -44,7 +44,7 @@
   background-color: #1a1a1a;
 }
 
-/*Ενοτητα για το κατω τμημα του προφιλ*/
+/*Section for the bottom part of the profile*/
 .profile-bottom-section-lists {
   padding: 0 10px 20px 10px;
 }
@@ -57,7 +57,7 @@
 }
 
 
-/*Ενοτητα για το ημερολογιο*/
+/*Section for the diary*/
 .diary-entry-lists {
   background-color: #363636;
   padding: 16px;
@@ -65,7 +65,7 @@
   color: #bf8fdf;
 }
 
-/*Ενοτητα για τις λιστες*/
+/*Section for the lists*/
 .list-group {
   margin-bottom: 24px;
   padding: 20px;
@@ -87,7 +87,7 @@
 }
 
 
-/*Ενοτητα για το grid των ταινιων*/
+/*Section for the movie grid*/
 .list-movie-grid {
   display: flex;
   flex-wrap: wrap;

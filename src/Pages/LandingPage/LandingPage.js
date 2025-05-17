@@ -10,13 +10,13 @@ import "./LandingPage.css";
 
 
 const LandingPage = () => {
-const { user } = useAuth();
-const navigate = useNavigate();
+	const { user } = useAuth();
+	const navigate = useNavigate();
 
-				
+
 	return (
-		
-		/*Εδω ειναι το hero section στο οποιο γινεται το καλοσοριμσα στον χρηστη και υπαρχει ενα κουμπι που παει πιο κατω στην σελιδα στο how it works section */
+
+		/* This is the hero section where the user is welcomed and there is a button that scrolls down to the how it works section */
 		<div className="landing-page">
 			<section className="hero-section">
 				<div className="hero-content">
@@ -29,8 +29,8 @@ const navigate = useNavigate();
 					</button>
 				</div>
 			</section>
-			
-			{/* Εδω ειναι το section με τα features του site. Υπαρχουν 4 κουμπια που οδηγουν σε διαφορετικες σελιδες του site.*/}
+
+			{/* This is the features section of the site. There are 4 buttons that lead to different pages of the site. */}
 			<section className="features-section">
 				{[
 					{ to: "/browse-movies", emoji: "🎬", title: "Browse Movies", desc: "Find and explore thousands of movies and shows." },
@@ -56,7 +56,7 @@ const navigate = useNavigate();
 				</div>
 			</section>
 
-			{/* Εδω ειναι το section με το πως δουλευει το site. Υπαρχουν 5 βηματα που πρεπει να ακολουθησει ο χρηστης για να χρησιμοποιησει το site */}
+			{/* This is the section that explains how the site works. There are 5 steps that the user should follow to use the site */}
 			<section id="how-it-works" className="how-it-works-section">
 				<h2 className="section-title">How It Works</h2>
 				{[
@@ -76,7 +76,7 @@ const navigate = useNavigate();
 				))}
 			</section>
 
-			{/* Εδω ειναι το section με τα πιο δημοφιλη και τα πιο προσφατα movies. Υπαρχουν 3 carousel components που ειναι τα PopularMovies, RecentReleases και ComingSoon */}
+			{/* This is the section with the most popular and most recent movies. There are 3 carousel components: PopularMovies, RecentReleases, and ComingSoon */}
 			<PopularMovies title="Popular Movies" />
 
 			<RecentReleases title="Recent Releases" />

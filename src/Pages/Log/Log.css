@@ -1,4 +1,4 @@
-/* Στυλ για το κεντρικό container του Log component */
+/* Style for the main container of the Log component */
 .log-container {
   max-width: calc(100% - 80px);
   margin: 50px 200px;
@@ -11,7 +11,7 @@
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Τίτλος της σελίδας */
+/* Page title */
 .log-container h1 {
   font-size: 40px;
   font-weight: bold;
@@ -19,7 +19,7 @@
   color: #ff7eb3; 
 }
 
-/* Περιέχει την αναζήτηση */
+/* Contains the search */
 .log-search {
   display: flex;
   justify-content: center;
@@ -27,7 +27,7 @@
   margin-top: 20px;
 }
 
-/* Input πεδίο αναζήτησης */
+/* Search input field */
 .log-search input[type="text"] {
   padding: 10px;
   font-size: 16px;
@@ -35,7 +35,7 @@
   border: 1px solid #ccc;
   border-radius: 6px;
 }
-/* Αποτελέσματα αναζήτησης */
+/* Search results */
 .log-search-results {
   margin-top: 20px;
   background-color: #222;
@@ -47,7 +47,7 @@
   margin-right: auto;
 }
 
-/* Στυλ για κάθε αποτέλεσμα (γραμμή λίστας) */
+/* Style for each result (list row) */
 .log-search-results li {
   list-style: none;
   padding: 10px;
@@ -57,13 +57,13 @@
   transition: background 0.2s ease;
 }
 
-/* Hover effect για κάθε αποτέλεσμα */
+/* Hover effect for each result */
 .log-search-results li:hover {
   background: #333;
 }
 
 
-/* Ανταποκρίσιμη σχεδίαση για μικρές οθόνες */
+/* Responsive design for small screens */
 @media (max-width: 800px) {
   .log-container {
     max-width: 400px;

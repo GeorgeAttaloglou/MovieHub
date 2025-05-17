@@ -1,4 +1,4 @@
-/*Βασικό container για τη σελίδα δημιουργίας λίστας */
+/* Main container for the create list page */
 .create-list-container {
   max-width: 800px;
   margin: 50px auto;
@@ -8,7 +8,7 @@
   border-radius: 12px;
 }
 
-/*Τίτλοι (h1, h2) */
+/* Titles (h1, h2) */
 .create-list-container h1 {
   font-size: 2.5rem;
   font-weight: bold;
@@ -19,7 +19,7 @@
   margin-bottom: 20px;
 }
 
-/*Εισαγωγή ονόματος λίστας */
+/* List name input */
 .list-name-input {
   width: 100%;
   padding: 10px;
@@ -29,7 +29,7 @@
   border: 1px solid #ccc;
 }
 
-/*Περιοχή αναζήτησης */
+/* Search area */
 .search-section input {
   width: 100%;
   padding: 10px;
@@ -38,7 +38,7 @@
   border: 1px solid #ccc;
 }
 
-/*Αποτελέσματα αναζήτησης */
+/* Search results */
 .search-results {
   margin: 20px 0;
 }
@@ -61,7 +61,7 @@
   padding: 6px 12px;
 }
 
-/*  Επιλεγμένες ταινίες */
+/* Selected movies */
 .selected-movies {
   display: flex;
   flex-wrap: wrap;
@@ -91,7 +91,7 @@
   padding: 5px 10px;
 }
 
-/*  Κουμπί αποθήκευσης */
+/* Save button */
 .save-button {
   padding: 12px 24px;
   font-size: 16px;
@@ -106,7 +106,7 @@
   background-color: #ff7eb3;
 }
 
-/*  Μήνυμα χωρίς αποτελέσματα */
+/* No results message */
 .no-results {
   text-align: center;
   color: #aaa;
@@ -114,7 +114,7 @@
   margin-top: 10px;
 }
 
-/*  Σύνδεσμοι τίτλων αναζήτησης και επιλεγμένων */
+/* Search and selected title links */
 .search-title-link,
 .selected-link {
   text-decoration: none;
@@ -125,7 +125,7 @@
   text-decoration: underline;
 }
 
-/*  Blocker overlay και modal */
+/* Blocker overlay and modal */
 .create-list-blocker {
   position: fixed;
   top: 70px; 

@@ -1,4 +1,4 @@
-/* Κεντρική φόρμα σύνδεσης - layout και εμφάνιση */
+/* Central login form - layout and appearance */
 .login-form {
     max-width: 400px;
     margin: 100px auto;
@@ -17,7 +17,7 @@
     font-weight: bold;
 }
 
-/* Input πεδία για email και password */
+/* Input fields for email and password */
 .login-form input {
     padding: 12px;
     background: #2a2a2a;
@@ -26,7 +26,7 @@
     color: white;
 }
 
-/* Κουμπί login/signup */
+/* Login/signup button */
 .login-form button {
     padding: 12px;
     background: #ff7eb3;

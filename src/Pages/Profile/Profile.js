@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import "./Profile.css";
 
-// Βάση URL για τις αφίσες ταινιών
+// Base URL for movie posters
 const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w200";
 
 function Profile() {
@@ -13,7 +13,7 @@ function Profile() {
   const [logs, setLogs] = useState([]);
   const [movieData, setMovieData] = useState({});
 
-  // Φόρτωση των log εγγραφών του χρήστη και αντίστοιχες αφίσες
+  // Load user's log entries and corresponding posters
   useEffect(() => {
     if (!user) return;
 
@@ -29,7 +29,7 @@ function Profile() {
         alert(`An unexpected error occurred: ${error.message}`);
       } else {
         setLogs(data);
-        fetchMoviePosters(data); // παίρνουμε και τις αφίσες για κάθε log
+        fetchMoviePosters(data); // also fetch posters for each log
       }
     };
 
@@ -53,7 +53,7 @@ function Profile() {
     fetchLogs();
   }, [user]);
 
-  // Συνάρτηση που αποδίδει αστεράκια για κάθε log (μέχρι 5)
+  // Function that renders stars for each log (up to 5)
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating / 2);
     const emptyStars = 5 - fullStars;
@@ -75,7 +75,7 @@ function Profile() {
 
   return (
     <div>
-      {/* Κορυφαίο section με εικόνα και όνομα χρήστη */}
+      {/* Top section with user image and name */}
       <div className="profile-container">
         <img src="pictures/profileicon.png" alt="User" className="profile-image" />
         <div className="profile-text">
@@ -83,7 +83,7 @@ function Profile() {
         </div>
       </div>
 
-      {/* Tabs για πλοήγηση σε profile sections */}
+      {/* Tabs for navigating profile sections */}
       <div className="profile-bottom-section">
         <div className="tabs-wrapper">
           <Link to="/profile" className="tab-button active">My diary</Link>
@@ -91,7 +91,7 @@ function Profile() {
           <Link to="/profilestats" className="tab-button">My stats</Link>
         </div>
 
-        {/* Περιεχόμενο ημερολογίου με logs του χρήστη */}
+        {/* Diary content with user's logs */}
         <div className="profile-content">
           <div className="diary-entry">
             <h2>Diary Entries</h2>

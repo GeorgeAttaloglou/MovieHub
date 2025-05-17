@@ -1,4 +1,4 @@
-/* Κεντρικό container για sections όπως λεπτομέρειες ή cast */
+/* Central container for sections like details or cast */
 .detail-section {
   max-width: calc(100% - 80px);
   margin: 50px auto;
@@ -9,7 +9,7 @@
   box-sizing: border-box;
 }
 
-/* Γενικό στυλ για το container */
+/* General style for the container */
 .movie-detail-container {
   display: flex;
   flex-wrap: wrap;
@@ -20,7 +20,7 @@
   box-sizing: border-box;
 }
 
-/* Στυλ για την κάρτα ταινίας */
+/* Style for the movie card */
 .movie-poster {
   flex: 1 1 300px;
   max-width: 300px;
@@ -32,7 +32,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Στυλ για τις λεπτομέρειες της ταινίας */
+/* Style for the movie details */
 .movie-info {
   flex: 2;
   min-width: 300px;
@@ -93,7 +93,7 @@
   margin: 5px 0;
 }
 
-/* Στυλ για το cast */
+/* Style for the cast */
 .movie-cast {
   max-width: 1100px;
   margin: 0 auto;
@@ -131,7 +131,7 @@
 }
 
 
-/* Responsiveness fix για το detail section*/
+/* Responsiveness fix for the detail section */
 @media (max-width: 600px) {
   .detail-section {
     max-width: 95%;
