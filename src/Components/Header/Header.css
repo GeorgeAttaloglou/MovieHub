@@ -1,107 +1,92 @@
-/* Gradient button styling */
 .btn-gradient {
-  background: linear-gradient(45deg, #ff7eb3, #ff758c);
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s ease-in-out;
+	background: linear-gradient(45deg, #ff7eb3, #ff758c);
+	color: white;
+	padding: 8px 15px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: 0.3s ease-in-out;
 }
 
 .btn-gradient:hover {
-  background: linear-gradient(45deg, #ff758c, #ff7eb3);
-  transform: scale(1.05);
+	background: linear-gradient(45deg, #ff758c, #ff7eb3);
+	transform: scale(1.05);
 }
 
 /* Secondary Gradient for Login/Logout */
 .btn-gradient-secondary {
-  background: linear-gradient(45deg, #a855f7, #9333ea); /* purple tones */
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s ease-in-out;
+	background: linear-gradient(45deg, #a855f7, #9333ea); /* purple tones */
+	color: white;
+	padding: 8px 15px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: 0.3s ease-in-out;
 }
 
 .btn-gradient-secondary:hover {
-  background: linear-gradient(45deg, #9333ea, #a855f7);
-  color: white;
-  transform: scale(1.05);
+	background: linear-gradient(45deg, #9333ea, #a855f7);
+	color: white;
+	transform: scale(1.05);
 }
 
-
-
-/* General Navbar Styling */
 .custom-navbar {
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1050;
-  background-color: #212529; /* matches Bootstrap dark */
-  width: 100%;
-  padding: 10px 0;
+	position: fixed !important;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1050;
+	background-color: #212529; /* matches Bootstrap dark */
+	width: 100%;
+	padding: 10px 0;
 }
 
 /* Keep user icon and LOG button in place */
 .navbar-icons {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
 }
 
 .user-icon {
-  width: 30px;
-  height: 30px;
-  cursor: pointer; /* Ensures it's clickable */
+	width: 30px;
+	height: 30px;
+	cursor: pointer; /* Ensures it's clickable */
 }
-
 
 /* Prevent icons from overlapping center brand on mobile */
 @media (max-width: 600px) {
-  .custom-navbar .container {
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-  }
+	.custom-navbar .container {
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		align-items: center;
+	}
 
-  .mobile-brand {
-    font-size: 1.2rem;
-    margin: 0 6px;
-    white-space: nowrap;
-  }
+	.mobile-brand {
+		font-size: 1.2rem;
+		margin: 0 6px;
+		white-space: nowrap;
+	}
 
-  .navbar-icons {
-    gap: 6px;
-    flex-shrink: 0;
-  }
+	.navbar-icons {
+		gap: 6px;
+		flex-shrink: 0;
+	}
 
-  .btn-gradient {
-    font-size: 0.75rem;
-    padding: 5px 8px;
-  }
+	.btn-gradient {
+		font-size: 0.75rem;
+		padding: 5px 8px;
+	}
 
-  .btn-gradient-secondary {
-    font-size: 0.75rem;
-    padding: 5px 8px;
-  }
+	.btn-gradient-secondary {
+		font-size: 0.75rem;
+		padding: 5px 8px;
+	}
 
-  .user-icon {
-    width: 24px;
-    height: 24px;
-  }
+	.user-icon {
+		width: 24px;
+		height: 24px;
+	}
 
-  .navbar-toggler {
-    padding: 4px 8px;
-  }
-}
-
-
-/* global or page-level CSS */
-body, .main-content {
-  padding-top: 70px; /* or whatever height your navbar is */
+	.navbar-toggler {
+		padding: 4px 8px;
+	}
 }
