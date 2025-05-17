@@ -53,6 +53,18 @@ function About() {
             </p>
           </div>
         </div>
+        
+        <div className="about-section">
+          <img src="pictures/supabase-logo-wordmark--dark.png" alt="supabase-logo" className="about-image" />
+          <div className="about-text-container">
+            <h2 className="about-title">
+              <Link to="https://supabase.com/">Our databse provider</Link>
+            </h2>
+            <p className="about-text">
+              MovieHub uses supabase for its databse needs but is not endorsed or certified but supabase.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
