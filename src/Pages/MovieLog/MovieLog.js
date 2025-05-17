@@ -1,23 +1,30 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { supabase } from "../../supabaseClient"
 import { useAuth } from '../../Contexts/authContexts'
 import { v4 as uuidv4 } from 'uuid'
+
 import SimilarMoviesCarousel from "../../Components/SimilarMovies/SimilarMovies";
+
 import "./MovieLog.css";
 
+// Constants for the API
 const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 const IMG_URL = "https://image.tmdb.org/t/p/w300";
 
 function MovieLog() {
+  // Get the movie ID from the URL
   const { id } = useParams();
+
+  // Declare states for the movie, rating, hover effect, review
   const [movie, setMovie] = useState(null);
   const [rating, setRating] = useState(0);
   const [hovered, setHovered] = useState(0);
   const [review, setReview] = useState("");
-  const { user } = useAuth();
-  
 
+  const { user } = useAuth();
+
+  // Fetch movie details based on the ID
   useEffect(() => {
     const fetchMovie = async () => {
       try {
@@ -34,6 +41,7 @@ function MovieLog() {
     fetchMovie();
   }, [id]);
 
+  // Function to log movie to Supabase
   const handleLog = async () => {
     if (!rating) {
       alert("Please select a rating.");
@@ -59,7 +67,7 @@ function MovieLog() {
 
       if (error) {
         console.error("Unexpected error:", error);
-      alert(`An unexpected error occurred: ${error.message}`);
+        alert(`An unexpected error occurred: ${error.message}`);
       } else {
         alert("Movie logged successfully!");
       }
@@ -69,13 +77,14 @@ function MovieLog() {
     }
   }
 
-
   if (!movie) return <p>Loading...</p>;
 
   return (
     <>
+      {/* Main section for logging a movie */}
       <div className="log-movie-container">
         <div className="log-header">
+          {/* Movie poster */}
           <img
             src={
               movie.poster_path
@@ -85,6 +94,7 @@ function MovieLog() {
             alt={movie.title}
           />
 
+          {/* User review */}
           <div className="log-info">
             <h2>Logging: {movie.title}</h2>
             <label>Review <span>(optional)</span></label>
@@ -96,6 +106,7 @@ function MovieLog() {
           </div>
         </div>
 
+        {/* Movie rating */}
         <div className="log-rating">
           <p>Rate this movie:</p>
           <div className="stars">
@@ -115,11 +126,13 @@ function MovieLog() {
           </div>
         </div>
 
+        {/* Submit button */}
         <button className="log-button" onClick={handleLog}>
           LOG
         </button>
       </div>
 
+      {/* Display carousel with similar movies */}
       <SimilarMoviesCarousel movieId={id} />
     </>
   );

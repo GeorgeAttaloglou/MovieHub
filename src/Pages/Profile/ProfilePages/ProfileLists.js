@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "../../../supabaseClient";
 import { useAuth } from "../../../Contexts/authContexts";
 import { Link } from "react-router-dom";
+
 import "./ProfileLists.css";
 
 const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w200";
 
 function ProfileLists() {
   const { user } = useAuth();
+
+  // Store lists and movie details
   const [lists, setLists] = useState([]);
   const [expandedListIds, setExpandedListIds] = useState([]);
   const [movieDetails, setMovieDetails] = useState({});
 
+  // When the user loads, fetch lists and corresponding movie details
   useEffect(() => {
     if (!user) return;
 
@@ -27,9 +31,11 @@ function ProfileLists() {
       } else {
         setLists(data);
 
+        // Gather all unique movie_ids from the lists
         const movieIds = [...new Set(data.flatMap(list => list.movie_ids))];
         const details = {};
 
+        // Fetch each movie's data from the TMDB API
         await Promise.all(
           movieIds.map(async (id) => {
             try {
@@ -49,6 +55,7 @@ function ProfileLists() {
     fetchLists();
   }, [user]);
 
+  // Toggle display of each list's content
   const toggleList = (id) => {
     setExpandedListIds((prev) =>
       prev.includes(id) ? prev.filter((lid) => lid !== id) : [...prev, id]
@@ -57,6 +64,7 @@ function ProfileLists() {
 
   return (
     <div>
+      {/* Top section with user image and name */}
       <div className="profile-container-lists">
         <img src="pictures/profileicon.png" alt="User" className="profile-image-lists" />
         <div className="profile-text-lists">
@@ -64,6 +72,7 @@ function ProfileLists() {
         </div>
       </div>
 
+      {/* Tabs for navigation */}
       <div className="profile-bottom-section-lists">
         <div className="tabs-wrapper-lists">
           <Link to="/profile" className="tab-button-lists">My diary</Link>
@@ -71,6 +80,7 @@ function ProfileLists() {
           <Link to="/profilestats" className="tab-button-lists">My stats</Link>
         </div>
 
+        {/* Render user's lists */}
         <div className="profile-content-lists">
           <div className="diary-entry-lists">
             <h2>Lists</h2>
@@ -79,10 +89,13 @@ function ProfileLists() {
             ) : (
               lists.map((list) => (
                 <div key={list.list_id} className="list-group">
+                  {/* List title and toggle */}
                   <div className="list-title" onClick={() => toggleList(list.list_id)}>
                     {list.list_title}
                     <span>{expandedListIds.includes(list.list_id) ? " ▲" : " ▼"}</span>
                   </div>
+
+                  {/* If the list is open, show movies */}
                   {expandedListIds.includes(list.list_id) && (
                     <div className="list-movie-grid">
                       {list.movie_ids.map((id) => {
