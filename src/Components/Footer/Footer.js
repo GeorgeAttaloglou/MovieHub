@@ -1,4 +1,3 @@
-import React from "react";
 import {
 	Box,
 	FooterContainer,
@@ -11,6 +10,7 @@ import {
 const Footer = () => {
 	return (
 		<Box>
+			
 			<h1
 				style={{
 					fontSize: "30px",
@@ -21,6 +21,7 @@ const Footer = () => {
 			>
 				Explore MovieHub!
 			</h1>
+
 			<FooterContainer>
 				<div style={
 					{
@@ -43,6 +44,7 @@ const Footer = () => {
 					</Row>
 				</div>
 			</FooterContainer>
+
 			<h3
 				style={{
 					fontSize: "16px",
