@@ -17,6 +17,7 @@ A React-based web application developed by Γιώργος Ατταλόγλου (
    ```bash
    git clone https://github.com/GeorgeAttaloglou/JS_App.git
    cd JS_App
+   ```
 
 2. **Install dependencies:**
 
@@ -26,7 +27,18 @@ A React-based web application developed by Γιώργος Ατταλόγλου (
    npm install
    ```
 
-3. **Start the development server:**
+3. **API integration**
+
+   To run the app with full functionality:
+
+   - **Create a TMDb account** and request an API key here: [TMDb API](https://www.themoviedb.org/settings/api).
+   - **Create a `.env` file** in the project root and add your API key:
+
+   ```
+   REACT_APP_TMDB_API_KEY=your_api_key
+   ```
+
+ 4. **Start the development server:**
 
    ```bash
    npm start
@@ -45,7 +57,70 @@ In the project directory, you can run:
 
 ## API Documentation
 
-*Note: As of the latest update, there is no backend API integrated. This section will be updated once API endpoints are available.*
+MovieHub uses [The Movie Database (TMDb) API](https://www.themoviedb.org/documentation/api) to fetch movie data including titles, posters, genres, ratings, and more.
+
+### Authentication
+
+All requests to the TMDb API require an API key. Store your key in the `.env` file as described above. The app uses this key to authenticate requests.
+
+### Example API Request
+
+To fetch popular movies:
+
+```js
+fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_API_KEY}`)
+   .then(response => response.json())
+   .then(data => console.log(data));
+```
+
+### Endpoints Used
+
+- **Get Popular Movies:**  
+   `GET /movie/popular`
+- **Search Movies:**  
+   `GET /search/movie?query={query}`
+- **Get Movie Details:**  
+   `GET /movie/{movie_id}`
+- **Get Genres:**  
+   `GET /genre/movie/list`
+
+Refer to the [TMDb API documentation](https://developers.themoviedb.org/3) for more details on available endpoints and parameters.
+
+### Rate Limiting
+
+TMDb enforces rate limits. Avoid making excessive requests in a short period to prevent being blocked.
+
+## Database
+
+MovieHub uses [Supabase](https://supabase.com/) as its backend database solution. Supabase provides a hosted PostgreSQL database and authentication services, enabling features such as:
+
+- **User Authentication:** Secure sign-up, login, and session management.
+- **User Profiles:** Storing and retrieving user information.
+- **Movie Logging:** Saving movies watched or added by users.
+- **Custom Lists:** Creating and managing personalized movie lists.
+
+### Database Setup
+
+1. **Create a Supabase Project:**  
+   Sign up at [Supabase](https://supabase.com/) and create a new project.
+
+2. **Configure Environment Variables:**  
+   Add your Supabase project URL and API key to your `.env` file:
+
+   ```
+   REACT_APP_SUPABASE_URL=your_supabase_url
+   REACT_APP_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+
+3. **Database Tables:**  
+   The following tables are used:
+   - `users`: Stores user profile data.
+   - `logs`: Stores movie entries linked to users.
+   - `lists`: Stores custom movie lists for each user.
+
+Refer to the Supabase [documentation](https://supabase.com/docs) for details on schema design and API usage.
+
+All database interactions are handled securely via Supabase's client libraries.
 
 ## Project Structure
 
@@ -54,12 +129,17 @@ The project's structure is as follows:
 ```
 JS_App/
 ├── public/
+│   ├── pictures
 │   └── index.html
 ├── src/
-│   ├── components/
+│   ├── Components/
+│   ├── Contexts/
+│   ├── Pages/
 │   ├── App.js
 │   ├── index.js
+│   ├── supabaseClient.js
 │   └── ...
+├── .env.example
 ├── .gitignore
 ├── package.json
 ├── README.md
@@ -68,6 +148,8 @@ JS_App/
 
 * **`public/`**: Contains the HTML file and images.
 * **`src/`**: Contains the React components and JavaScript files.
+* **`Contexts/`**: Contains context providers for state management.
+* **`supabaseClient.js`**: Initializes the Supabase client for database interactions.
 * **`package.json`**: Lists dependencies and project metadata.
 
 ## License
