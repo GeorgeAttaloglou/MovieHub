@@ -17,6 +17,8 @@ import MovieDetail from "./Pages/MovieDetails/MovieDetails";
 import MovieLog from "./Pages/MovieLog/MovieLog"; // Import MovieLog page
 import { AuthProvider } from "./Contexts/authContexts";
 import Login from "./Pages/Login/Login";
+import EditList from "./Pages/EditList/EditList"; // Import EditList page
+
 
 function App() {
   return (
@@ -34,6 +36,7 @@ function App() {
         <Route path="/movie/:id" element={<MovieDetail />} />  
         <Route path="/movie-log/:id" element={<MovieLog />} /> {/* MovieLog page */}
         <Route path="/login" element={<Login />} />
+        <Route path="/edit-list/:id" element={<EditList />} /> 
       </Routes>
       <Footer />
     </AuthProvider>

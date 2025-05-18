@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "../../supabaseClient"
-import "./CreateList.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Contexts/authContexts";
 import { v4 as uuidv4 } from 'uuid'
 
+import "./CreateList.css";
+
 const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w200";
 
+
 function CreateList() {
+
+  // State for the list name, search, search results, and selected movies
   const [listName, setListName] = useState("");
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -16,7 +20,10 @@ function CreateList() {
   const { user } = useAuth();
   const navigate = useNavigate();
 
+  // useEffect to search for movies when search or selectedMovies changes
   useEffect(() => {
+
+    // Function to fetch movies from the TMDB API
     const fetchMovies = async () => {
       if (!search) {
         setSearchResults([]);
@@ -30,6 +37,8 @@ function CreateList() {
         const data = await res.json();
 
         if (data.results) {
+
+          // Filter to exclude already selected movies and movies without a poster
           const filtered = data.results
             .filter(
               (movie) =>
@@ -47,14 +56,17 @@ function CreateList() {
     fetchMovies();
   }, [search, selectedMovies]);
 
+  // Add a movie to the selected movies list
   const addMovie = (movie) => {
     setSelectedMovies((prev) => [...prev, movie]);
   };
 
+  // Remove a movie from the selected movies list
   const removeMovie = (id) => {
     setSelectedMovies((prev) => prev.filter((movie) => movie.id !== id));
   };
 
+  // Save the list to the database via Supabase
   const handleSaveList = async () => {
     if (!listName.trim()) {
       alert("Please enter a list name.");
@@ -99,7 +111,8 @@ function CreateList() {
 
   return (
     <div className="create-list-container">
-      {/* Modal blocker */}
+
+      {/* Modal blocker if the user is not logged in */}
       {!user && (
         <div className="create-list-blocker">
           <div className="blocker-modal">
@@ -109,8 +122,8 @@ function CreateList() {
         </div>
       )}
 
+      {/* List name input */}
       <h1>Create a New Movie List</h1>
-
       <input
         className="list-name-input"
         type="text"
@@ -120,6 +133,7 @@ function CreateList() {
         disabled={!user}
       />
 
+      {/* Movie search */}
       <div className="search-section">
         <input
           type="text"
@@ -130,23 +144,34 @@ function CreateList() {
         />
       </div>
 
+      {/* Display search results */}
       <div className="search-results">
         {searchResults.length > 0 ? (
           searchResults.map((movie) => (
-            <div key={movie.id} className="search-result">
+            <div key={movie.id} className="search-result with-poster">
               <Link to={`/movie/${movie.id}`} className="search-title-link">
-                {movie.title}
+                <img
+                  src={
+                    movie.poster_path
+                      ? `${TMDB_IMAGE_BASE}${movie.poster_path}`
+                      : "https://via.placeholder.com/50x75?text=N/A"
+                  }
+                  alt={movie.title}
+                />
+                <span>{movie.title}</span>
               </Link>
-              <button onClick={() => addMovie(movie)} disabled={!user}>
+              <button className="add-movie-button" onClick={() => addMovie(movie)} disabled={!user}>
                 Add
               </button>
             </div>
+
           ))
         ) : (
           <p className="no-results">No movies found.</p>
         )}
       </div>
 
+      {/* Display selected movies */}
       <h2>Movies in This List</h2>
       <div className="selected-movies">
         {selectedMovies.map((movie) => (
@@ -165,6 +190,7 @@ function CreateList() {
         ))}
       </div>
 
+      {/* Save list button */}
       <button className="save-button" onClick={handleSaveList} disabled={!user}>
         Save List
       </button>
