@@ -56,10 +56,9 @@
   border-radius: 0 12px 12px 12px;
 }
 
-
 /*Section for the diary*/
 .diary-entry-lists {
-  background-color: #363636;
+  background-color: #292929;
   padding: 16px;
   border-radius: 12px;
   color: #bf8fdf;
@@ -86,6 +85,11 @@
   align-items: center;
 }
 
+.no-results-list {
+  font-style: italic;
+  color: #888;
+  text-align: center;
+}
 
 /*Section for the movie grid*/
 .list-movie-grid {

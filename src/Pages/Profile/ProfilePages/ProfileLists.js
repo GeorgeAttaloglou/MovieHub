@@ -91,7 +91,7 @@ function ProfileLists() {
           <div className="diary-entry-lists">
             <h2>Lists</h2>
             {lists.length === 0 ? (
-              <p>No lists found.</p>
+              <p className="no-results-list">No lists found.</p>
             ) : (
               lists.map((list) => (
                 <div key={list.list_id} className="list-group">
