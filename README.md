@@ -7,6 +7,7 @@ A React-based web application developed by Γιώργος Ατταλόγλου (
 - [Installation](#installation)
 - [Available Scripts](#available-scripts)
 - [API Documentation](#api-documentation)
+- [Database](#database)
 - [Project Structure](#project-structure)
 - [License](#license)
 
