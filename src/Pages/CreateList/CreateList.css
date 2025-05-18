@@ -114,6 +114,40 @@
   margin-top: 10px;
 }
 
+.search-result.with-poster {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #444;
+}
+
+.search-result.with-poster img {
+  width: 40px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.search-title-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: white;
+  flex-grow: 1;
+}
+
+.search-title-link span {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.add-movie-button {
+  margin-right: 20px;
+}
+
 /* Search and selected title links */
 .search-title-link,
 .selected-link {

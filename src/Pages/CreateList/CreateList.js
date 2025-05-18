@@ -22,7 +22,7 @@ function CreateList() {
 
   // useEffect to search for movies when search or selectedMovies changes
   useEffect(() => {
-  
+
     // Function to fetch movies from the TMDB API
     const fetchMovies = async () => {
       if (!search) {
@@ -111,7 +111,7 @@ function CreateList() {
 
   return (
     <div className="create-list-container">
-  
+
       {/* Modal blocker if the user is not logged in */}
       {!user && (
         <div className="create-list-blocker">
@@ -144,18 +144,27 @@ function CreateList() {
         />
       </div>
 
-      {/* Display search results */}  
+      {/* Display search results */}
       <div className="search-results">
         {searchResults.length > 0 ? (
           searchResults.map((movie) => (
-            <div key={movie.id} className="search-result">
+            <div key={movie.id} className="search-result with-poster">
               <Link to={`/movie/${movie.id}`} className="search-title-link">
-                {movie.title}
+                <img
+                  src={
+                    movie.poster_path
+                      ? `${TMDB_IMAGE_BASE}${movie.poster_path}`
+                      : "https://via.placeholder.com/50x75?text=N/A"
+                  }
+                  alt={movie.title}
+                />
+                <span>{movie.title}</span>
               </Link>
-              <button onClick={() => addMovie(movie)} disabled={!user}>
+              <button className="add-movie-button" onClick={() => addMovie(movie)} disabled={!user}>
                 Add
               </button>
             </div>
+
           ))
         ) : (
           <p className="no-results">No movies found.</p>

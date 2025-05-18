@@ -124,3 +124,27 @@
   font-size: 0.9rem;
   color: #d4bfff;
 }
+
+/*Section for the edit list button*/
+.edit-list-button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.edit-list-button {
+  padding: 8px 30px;
+  font-size: 16px;
+  border: none;
+  font-weight: bold;
+  border-radius: 6px;
+  background-color: #a855f7;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.edit-list-button:hover {
+  background-color: #ff7eb3;
+}
+
