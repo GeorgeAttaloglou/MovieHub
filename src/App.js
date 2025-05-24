@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom"; // Import Routes and Route
 import LandingPage from "./Pages/LandingPage/LandingPage";
 import Header from "./Components/Header/Header"; // Navbar
@@ -34,7 +33,7 @@ function App() {
         <Route path="/profilelists" element={<ProfileLists/>} />
         <Route path="/profilestats" element={<ProfileStats/>} />
         <Route path="/movie/:id" element={<MovieDetail />} />  
-        <Route path="/movie-log/:id" element={<MovieLog />} /> {/* MovieLog page */}
+        <Route path="/movie-log/:id" element={<MovieLog />} />
         <Route path="/login" element={<Login />} />
         <Route path="/edit-list/:id" element={<EditList />} /> 
       </Routes>
