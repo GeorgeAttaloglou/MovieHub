@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "../../supabaseClient"
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Contexts/authContexts";
+import PopupMessage from "../../Components/PopupMessage/PopupMessage";
 import { v4 as uuidv4 } from 'uuid'
 
 import "./CreateList.css";
@@ -19,6 +20,11 @@ function CreateList() {
   const [selectedMovies, setSelectedMovies] = useState([]);
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [popup, setPopup] = useState({ visible: false, type: "", message: "" });
+
+  const showPopup = (type, message) => {
+    setPopup({ visible: true, type, message });
+  };
 
   // useEffect to search for movies when search or selectedMovies changes
   useEffect(() => {
@@ -69,19 +75,19 @@ function CreateList() {
   // Save the list to the database via Supabase
   const handleSaveList = async () => {
     if (!listName.trim()) {
-      alert("Please enter a list name.");
+      showPopup("error", "Please enter a list name.");
       return;
     }
 
     if (selectedMovies.length === 0) {
-      alert("Please add at least one movie to the list.");
+      showPopup("error", "Please add at least one movie to the list.");
       return;
     }
 
     try {
 
       if (!user) {
-        alert("You must be logged in to save a list.");
+        showPopup("error", "You must be logged in to save a list.");
         return;
       }
 
@@ -97,19 +103,29 @@ function CreateList() {
 
       if (error) {
         console.error("Error saving list:", error);
-        alert(`An unexpected error occurred: ${error.message}`);
+        showPopup("error", `An unexpected error occurred: ${error.message}`);
       } else {
-        alert("List saved successfully!");
+        showPopup("success", "List saved successfully!");
         setListName("");
+        setSearch("");
+        setSearchResults([]);
         setSelectedMovies([]);
       }
     } catch (err) {
       console.error("Unexpected error:", err);
-      alert(`An unexpected error occurred: ${err.message}`);
+      showPopup("error", `An unexpected error occurred: ${err.message}`);
     }
   };
 
   return (
+    <>
+    {popup.visible && (
+      <PopupMessage
+        type={popup.type}
+        message={popup.message}
+        onClose={() => setPopup({ ...popup, visible: false })}
+      />
+    )}
     <div className="create-list-container">
 
       {/* Modal blocker if the user is not logged in */}
@@ -195,7 +211,8 @@ function CreateList() {
         Save List
       </button>
     </div>
-  );
+    </>
+  );  
 }
 
 export default CreateList;

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { supabase } from "../../supabaseClient"
 import { useAuth } from '../../Contexts/authContexts'
+import PopupMessage from "../../Components/PopupMessage/PopupMessage";
 import { v4 as uuidv4 } from 'uuid'
 
 import SimilarMoviesCarousel from "../../Components/SimilarMovies/SimilarMovies";
@@ -24,6 +25,12 @@ function MovieLog() {
 
   const { user } = useAuth();
 
+  const [popup, setPopup] = useState({ visible: false, type: "", message: "" });
+
+  const showPopup = (type, message) => {
+    setPopup({ visible: true, type, message });
+  };
+
   // Fetch movie details based on the ID
   useEffect(() => {
     const fetchMovie = async () => {
@@ -44,13 +51,13 @@ function MovieLog() {
   // Function to log movie to Supabase
   const handleLog = async () => {
     if (!rating) {
-      alert("Please select a rating.");
+      showPopup("error", "Please select a rating.");
       return;
     }
 
     try {
       if (!user) {
-        alert("You need to be logged in to log a movie.");
+        showPopup("error", "You need to be logged in to log a movie.");
         return;
       }
 
@@ -67,13 +74,13 @@ function MovieLog() {
 
       if (error) {
         console.error("Unexpected error:", error);
-        alert(`An unexpected error occurred: ${error.message}`);
+        showPopup("error", `An unexpected error occurred: ${error.message}`);
       } else {
-        alert("Movie logged successfully!");
+        showPopup("success", "Movie logged successfully!");
       }
     } catch (err) {
       console.error("Unexpected error:", err);
-      alert(`An unexpected error occurred: ${err.message}`);
+      showPopup("error", `An unexpected error occurred: ${err.message}`);
     }
   }
 
@@ -81,6 +88,13 @@ function MovieLog() {
 
   return (
     <>
+    {popup.visible && (
+      <PopupMessage
+        type={popup.type}
+        message={popup.message}
+        onClose={() => setPopup({ ...popup, visible: false })}
+      />
+    )}
       {/* Main section for logging a movie */}
       <div className="log-movie-container">
         <div className="log-header">

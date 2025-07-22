@@ -1,0 +1,35 @@
+.popup-message {
+    position: fixed;
+    top: 20px;
+    right: 625px;
+    padding: 14px 24px;
+    border-radius: 8px;
+    color: white;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: slide-in 0.3s ease;
+}
+
+.popup-message.success {
+    background-color: #4caf50;
+}
+
+.popup-message.error {
+    background-color: #f44336;
+}
+
+.popup-message.info {
+    background-color: #2196f3;
+}
+
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
