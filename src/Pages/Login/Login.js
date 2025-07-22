@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useAuth } from "../../Contexts/authContexts"
 import { useNavigate } from "react-router-dom";
+import PopupMessage from "../../Components/PopupMessage/PopupMessage";
 import './Login.css'
 
 export default function Login() {
@@ -14,6 +15,12 @@ export default function Login() {
 
   const navigate = useNavigate(); 
 
+  const [popup, setPopup] = useState({ visible: false, type: "", message: "" });
+
+  const showPopup = (type, message) => {
+    setPopup({ visible: true, type, message });
+  };
+
   // When the form is submitted (either for login or signup)
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,21 +31,26 @@ export default function Login() {
   
     // If there was an error, show it
     if (error) {
-      alert(error.message);
-    } 
-    // If everything went well and there is an active session, go to the home page
-    else if (data?.session) {
+      showPopup("error", error.message);
+    } else if (data?.session) {
       navigate("/");
-    } 
-    // Otherwise show a generic error
-    else {
-      alert("Login failed: no active session.");
+    } else {
+      showPopup("error", "Login failed: no active session.");
     }
   };
 
   return (
-    // The login/signup form
-    <form onSubmit={handleSubmit} className="login-form">
+    <>
+      {/* Show popup message if it is visible */}
+      {popup.visible && (
+        <PopupMessage
+          type={popup.type}
+          message={popup.message}
+          onClose={() => setPopup({ ...popup, visible: false })}
+        />
+      )}
+      {/* The login/signup form */}
+      <form onSubmit={handleSubmit} className="login-form">
       <h2>{isLogin ? "Login" : "Sign Up"}</h2>
 
       {/* Input for email */}
@@ -64,5 +76,6 @@ export default function Login() {
         {isLogin ? "Need to sign up?" : "Already have an account?"}
       </p>
     </form>
+    </>
   )
 }

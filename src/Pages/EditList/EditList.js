@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "../../supabaseClient";
+import PopupMessage from "../../Components/PopupMessage/PopupMessage";
 import "./EditList.css";
 
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
@@ -18,6 +19,11 @@ function EditList() {
   const [searchResults, setSearchResults] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const [popup, setPopup] = useState({ visible: false, type: "", message: "" });
+
+  const showPopupMessage = (type, message) => {
+    setPopup({ visible: true, type, message });
+  };
 
   // Fetch list data by ID
   useEffect(() => {
@@ -79,7 +85,7 @@ function EditList() {
       })
       .eq("list_id", id);
 
-    alert("List updated!");
+    showPopupMessage("success", "List updated successfully!");
   };
 
   const handleDeleteList = async () => {
@@ -94,11 +100,19 @@ function EditList() {
       navigate("/profilelists");
     } catch (err) {
       console.error("Failed to delete list:", err.message);
-      alert("Error deleting list");
+      showPopupMessage("error", `Failed to delete list: ${err.message}`);
     }
   };
 
   return (
+    <>
+    {popup.visible && (
+      <PopupMessage
+        type={popup.type}
+        message={popup.message}
+        onClose={() => setPopup({ ...popup, visible: false })}
+      />
+    )}
     <div className="edit-list-container">
       <h1>Edit Your List</h1>
 
@@ -193,6 +207,7 @@ function EditList() {
         </div>
       )}
     </div>
+    </>
   );
 }
 

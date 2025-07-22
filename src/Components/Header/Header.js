@@ -51,11 +51,11 @@ const Header = () => {
 									<Link to="/log">
 										<button className="btn btn-gradient">LOG</button>
 									</Link>
-									<button className="btn btn-gradient-secondary" onClick={handleLogout}>LOGOUT</button>
+									<button className="btn btn-gradient-secondary" onClick={handleLogout}>LOG OUT</button>
 								</>
 							) : (
 								<Link to="/login">
-									<button className="btn btn-gradient-secondary">LOGIN</button>
+									<button className="btn btn-gradient-secondary">LOG IN</button>
 								</Link>
 							)}
 						</div>
@@ -87,11 +87,11 @@ const Header = () => {
 									<Link to="/log">
 										<button className="btn btn-gradient">LOG</button>
 									</Link>
-									<button className="btn btn-gradient-secondary" onClick={handleLogout}>LOGOUT</button>
+									<button className="btn btn-gradient-secondary" onClick={handleLogout}>LOG OUT</button>
 								</>
 							) : (
 								<Link to="/login">
-									<button className="btn btn-gradient-secondary">LOGIN</button>
+									<button className="btn btn-gradient-secondary">LOG IN</button>
 								</Link>
 							)}
 						</div>
