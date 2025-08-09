@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../supabaseClient";
 import { useAuth } from "../../Contexts/authContexts";
 import { Link } from "react-router-dom";
-
 import "./Profile.css";
 
 // Base URL for movie posters
@@ -12,6 +11,8 @@ function Profile() {
   const { user } = useAuth();
   const [logs, setLogs] = useState([]);
   const [movieData, setMovieData] = useState({});
+  const [selectMode, setSelectMode] = useState(false);
+  const [selectedLogs, setSelectedLogs] = useState([]);
 
   // Load user's log entries and corresponding posters
   useEffect(() => {
@@ -73,9 +74,30 @@ function Profile() {
     );
   };
 
+  const toggleSelectLog = (id) => {
+    setSelectedLogs((prev) =>
+      prev.includes(id) ? prev.filter((logId) => logId !== id) : [...prev, id]
+    );
+  };
+
+  const handleDeleteSelected = async () => {
+    if (selectedLogs.length === 0) return;
+    const { error } = await supabase
+      .from("logs")
+      .delete()
+      .in("id", selectedLogs);
+
+    if (error) {
+      alert(`Failed to delete logs: ${error.message}`);
+    } else {
+      setLogs((prev) => prev.filter((log) => !selectedLogs.includes(log.id)));
+      setSelectedLogs([]);
+      setSelectMode(false);
+    }
+  };
+
   return (
     <div>
-      {/* Top section with user image and name */}
       <div className="profile-container">
         <img src="pictures/profileicon.png" alt="User" className="profile-image" />
         <div className="profile-text">
@@ -83,7 +105,6 @@ function Profile() {
         </div>
       </div>
 
-      {/* Tabs for navigating profile sections */}
       <div className="profile-bottom-section">
         <div className="tabs-wrapper">
           <Link to="/profile" className="tab-button active">My diary</Link>
@@ -91,15 +112,39 @@ function Profile() {
           <Link to="/profilestats" className="tab-button">My stats</Link>
         </div>
 
-        {/* Diary content with user's logs */}
         <div className="profile-content">
           <div className="diary-entry">
             <h2>Diary Entries</h2>
+
+            {/* Action Buttons */}
+            <div className="action-buttons">
+              {!selectMode && logs.length > 0 && (
+                <button onClick={() => setSelectMode(true)} className="select-btn">Select</button>
+              )}
+              {selectMode && (
+                <>
+                  <button onClick={handleDeleteSelected} className="delete-btn" disabled={selectedLogs.length === 0}>
+                    Delete Selected
+                  </button>
+                  <button onClick={() => { setSelectMode(false); setSelectedLogs([]); }} className="cancel-btn">
+                    Cancel
+                  </button>
+                </>
+              )}
+            </div>
+
             {logs.length === 0 ? (
               <p className="no-results">No logs found.</p>
             ) : (
               logs.map((log) => (
-                <div key={log.id} className="log-row">
+                <div key={log.id} className={`log-row ${selectMode ? "select-mode" : ""}`}>
+                  {selectMode && (
+                    <input
+                      type="checkbox"
+                      checked={selectedLogs.includes(log.id)}
+                      onChange={() => toggleSelectLog(log.id)}
+                    />
+                  )}
                   <Link to={`/movie/${log.movie_id}`}>
                     <img
                       src={movieData[log.movie_id] ? `${TMDB_IMAGE_BASE}${movieData[log.movie_id]}` : "/pictures/placeholder.jpg"}
