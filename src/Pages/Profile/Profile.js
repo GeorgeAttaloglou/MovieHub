@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../supabaseClient";
 import { useAuth } from "../../Contexts/authContexts";
 import { Link } from "react-router-dom";
+import PopupMessage from "../../Components/PopupMessage/PopupMessage";
 import "./Profile.css";
 
 // Base URL for movie posters
@@ -13,6 +14,11 @@ function Profile() {
   const [movieData, setMovieData] = useState({});
   const [selectMode, setSelectMode] = useState(false);
   const [selectedLogs, setSelectedLogs] = useState([]);
+  const [popup, setPopup] = useState({ visible: false, type: "", message: "" });
+
+  const showPopup = (type, message) => {
+    setPopup({ visible: true, type, message });
+  };
 
   // Load user's log entries and corresponding posters
   useEffect(() => {
@@ -27,7 +33,7 @@ function Profile() {
 
       if (error) {
         console.error("Error fetching logs", error);
-        alert(`An unexpected error occurred: ${error.message}`);
+        showPopup("error", "Failed to load logs.");
       } else {
         setLogs(data);
         fetchMoviePosters(data); // also fetch posters for each log
@@ -88,15 +94,25 @@ function Profile() {
       .in("id", selectedLogs);
 
     if (error) {
-      alert(`Failed to delete logs: ${error.message}`);
+      console.log("Failed to delete logs:", error);
+      showPopup("error", "Failed to delete logs.");
     } else {
       setLogs((prev) => prev.filter((log) => !selectedLogs.includes(log.id)));
       setSelectedLogs([]);
       setSelectMode(false);
+      showPopup("success", "Logs deleted");
     }
   };
 
   return (
+    <>
+    {popup.visible && (
+      <PopupMessage
+        type={popup.type}
+        message={popup.message}
+        onClose={() => setPopup({ ...popup, visible: false })}
+      />
+    )}
     <div>
       <div className="profile-container">
         <img src="pictures/profileicon.png" alt="User" className="profile-image" />
@@ -167,6 +183,7 @@ function Profile() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
