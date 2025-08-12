@@ -100,7 +100,7 @@ function Profile() {
       setLogs((prev) => prev.filter((log) => !selectedLogs.includes(log.id)));
       setSelectedLogs([]);
       setSelectMode(false);
-      showPopup("success", "Logs deleted");
+      showPopup("success", "Log(s) deleted!");
     }
   };
 
