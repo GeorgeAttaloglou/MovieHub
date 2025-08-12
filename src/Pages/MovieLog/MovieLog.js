@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../../supabaseClient"
 import { useAuth } from '../../Contexts/authContexts'
 import PopupMessage from "../../Components/PopupMessage/PopupMessage";
@@ -16,6 +16,7 @@ const IMG_URL = "https://image.tmdb.org/t/p/w300";
 function MovieLog() {
   // Get the movie ID from the URL
   const { id } = useParams();
+  const navigate = useNavigate();
 
   // Declare states for the movie, rating, hover effect, review
   const [movie, setMovie] = useState(null);
@@ -76,7 +77,8 @@ function MovieLog() {
         console.error("Unexpected error:", error);
         showPopup("error", `An unexpected error occurred: ${error.message}`);
       } else {
-        showPopup("success", "Movie logged successfully!");
+        showPopup("success", "Movie logged successfully! Redirecting...");
+        setTimeout(() => navigate("../../profile"), 1500);
       }
     } catch (err) {
       console.error("Unexpected error:", err);
