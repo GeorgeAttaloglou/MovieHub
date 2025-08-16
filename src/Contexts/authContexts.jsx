@@ -22,7 +22,17 @@ export const AuthProvider = ({ children }) => {
 	}, [])
 
 	const login = (email, password) => supabase.auth.signInWithPassword({ email, password })
-	const signup = (email, password) => supabase.auth.signUp({ email, password })
+	const signup = async (email, password, username) => {
+		const { data, error } = await supabase.auth.signUp({
+			email,
+			password,
+			options: {
+				data: { username }  // this saves username in user_metadata
+			}
+		});
+		return { data, error };
+	};
+
 	const logout = () => supabase.auth.signOut()
 
 	return (
