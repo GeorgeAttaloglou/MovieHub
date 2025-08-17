@@ -28,9 +28,15 @@ export default function Login() {
     if (isLogin) {
       const { error } = await login(email, password);
       if (error) showPopup("error", error.message);
+      else {
+        navigate("/profile");
+      }
     } else {
       const { error } = await signup(email, password, username);
       if (error) showPopup("error", error.message);
+      else {
+        navigate("../");
+      }
     }
   };
 
