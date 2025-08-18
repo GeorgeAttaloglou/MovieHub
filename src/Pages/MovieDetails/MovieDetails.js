@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import SimilarMoviesCarousel from "../../Components/SimilarMovies/SimilarMovies";
 import "./MovieDetails.css";
 
-// Keys for TMDB API and image URLs
 const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 const PROFILE_IMG = "https://image.tmdb.org/t/p/w185";

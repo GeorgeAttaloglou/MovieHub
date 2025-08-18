@@ -1,5 +1,6 @@
 /* Basic reset styles and background for body and html */
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
@@ -83,16 +84,16 @@ body, html {
 /* Responsive adjustments for smaller screens */
 @media (max-width: 900px) {
   .about-section {
-      flex-direction: column;
-      text-align: center;
+    flex-direction: column;
+    text-align: center;
   }
 
   .about-image {
-      width: 100%;
-      max-height: 300px;
+    width: 100%;
+    max-height: 300px;
   }
 
   .about-text-container {
-      width: 100%;
+    width: 100%;
   }
 }

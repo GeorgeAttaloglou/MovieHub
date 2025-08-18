@@ -2,7 +2,6 @@ import { useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import "./BrowseMovies.css";
 
-// Constants
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 
 //Main Component

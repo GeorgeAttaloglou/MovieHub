@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import PopupMessage from "../../Components/PopupMessage/PopupMessage";
 import "./Profile.css";
 
-// Base URL for movie posters
 const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w200";
 
 function Profile() {

@@ -6,7 +6,7 @@ function About() {
     <div>
       <div className="about-container">
 
-        { /* Header section "About Us" */ }
+        { /* Header section "About Us" */}
         <div className="about-us-text-center">
           <h1 className="about-title">
             About Us
