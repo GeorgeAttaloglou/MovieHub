@@ -8,7 +8,7 @@ import "./Profile.css";
 const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w200";
 
 function Profile() {
-  const { user } = useAuth();
+  const { user, profile } = useAuth();
   const [logs, setLogs] = useState([]);
   const [movieData, setMovieData] = useState({});
   const [selectMode, setSelectMode] = useState(false);
@@ -116,7 +116,7 @@ function Profile() {
       <div className="profile-container">
         <img src="pictures/profileicon.png" alt="User" className="profile-image" />
         <div className="profile-text">
-          <h1>Welcome {user?.user_name || "back!"}</h1>
+          <h1>Welcome back {profile?.username || null}!</h1>
         </div>
       </div>
 

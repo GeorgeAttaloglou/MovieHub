@@ -5,6 +5,7 @@ const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
+  const [profile, setProfile] = useState(null)
 
   useEffect(() => {
     // Check if user is already logged in
@@ -19,6 +20,25 @@ export const AuthProvider = ({ children }) => {
 
     return () => listener?.subscription.unsubscribe()
   }, [])
+
+
+  useEffect(() => {
+    if (!user) {
+      setProfile(null);
+      return;
+    }
+
+    const fetchProfile = async () => {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("username, avatar_url, bio")
+        .eq("id", user.id)
+        .single()
+
+      if (!error) setProfile(data)
+    }
+  fetchProfile()
+  }, [user])
 
   const login = (email, password) =>
     supabase.auth.signInWithPassword({ email, password })
@@ -56,7 +76,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => supabase.auth.signOut()
 
   return (
-    <AuthContext.Provider value={{ user, login, signup, logout }}>
+    <AuthContext.Provider value={{ user, profile, login, signup, logout }}>
       {children}
     </AuthContext.Provider>
   )
